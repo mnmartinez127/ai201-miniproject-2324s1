@@ -22,14 +22,15 @@ class Cleanup:
         self.threshold_value = threshold_value
         self.max_threshold = max_threshold
 
-    def _read_images_from_folder(self):
+
+    def _read_images_from_folder(self,limit=-1):
         print('reading images...')
         images = []
         for classname in classes:
-            for filename in os.listdir(os.path.join(self.folder_name, classname)):
+            for filename in os.listdir(os.path.join(self.folder_name, classname))[:limit]:
                 img = cv.imread(os.path.join(self.folder_name, classname, filename))
                 if img is not None:
-                    print(img)
+                    #print(img)
                     images.append(img)
         print('done!')
         return images
@@ -39,7 +40,7 @@ class Cleanup:
         resized_images = []
         for img in images:
             resized_image = cv.resize(img, (self.width, self.height))
-            print(resized_images)
+            #print(resized_images)
             resized_images.append(resized_image)
         print('done!')
         return resized_images
@@ -49,7 +50,7 @@ class Cleanup:
         grayscale_images = []
         for img in images:
             gray_img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-            print(gray_img)
+            #print(gray_img)
             grayscale_images.append(gray_img)
         print('done!')
         return grayscale_images
@@ -59,7 +60,7 @@ class Cleanup:
         filtered_images = []
         for img in images:
             filtered_img = cv.GaussianBlur(img, self.kernel_size, 0)
-            print(filtered_img)
+            #print(filtered_img)
             filtered_images.append(filtered_img)
         print('done!')
         return filtered_images
@@ -67,16 +68,17 @@ class Cleanup:
     def _image_segmentation(self, images):
         segmented_images = []
         for img in images:
-            _, segmented_img = cv.threshold(
+            _, segmented_mask = cv.threshold(
                 img,
                 self.threshold_value,
                 self.max_threshold,
                 cv.THRESH_BINARY)
+            segmented_img = cv.bitwise_and(img,img,mask=segmented_mask)
             segmented_images.append(segmented_img)
         return segmented_images
     
-    def process_images(self, is_resize=True, convert_to_grayscale=True, apply_filter=True, segment_images=True):
-        self.images = self._read_images_from_folder()
+    def process_images(self, is_resize=True, convert_to_grayscale=True, apply_filter=True, segment_images=True,limit=10):
+        self.images = self._read_images_from_folder(limit)
         if is_resize:
             self.images = self._resize_images(self.images)
         if convert_to_grayscale:
@@ -91,13 +93,12 @@ class Cleanup:
         if not bottom:
             bottom = len(self.images)
         images = self.images[top:bottom]
-        for image, i in enumerate(images):
+        for i,image in enumerate(images):
             cv.imshow(f"Segmented Image {i + 1}", image)
             cv.waitKey(0)
             cv.destroyAllWindows()
 
-# classes = ['Bud Root Dropping', 'Bud Rot', 'Gray Leaf Spot', 'Leaf Rot', 'Stem Bleeding']
-classes = ['Bud Root Dropping'] 
+classes = ['Bud Root Dropping', 'Bud Rot', 'Gray Leaf Spot', 'Leaf Rot', 'Stem Bleeding']
 c = Cleanup(folder_name='datasets/Coconut Tree Disease Dataset/', classes=classes)
 c.process_images()
 c.show_images(0,2)
