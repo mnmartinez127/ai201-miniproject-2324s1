@@ -23,6 +23,8 @@ Note: This assumes the use of pyenv, but you can use any package manager / pytho
 4. Unzip the dataset once more. Run `unzip preprocessing/datasets/Coconut\ Tree\ Disease\ Dataset/Coconut\ Tree\ Disease\ Dataset.zip -d preprocessing/datasets/`.
 5. Delete zip artifacts. Run `rm -rf preprocessing/datasets/Coconut\ Tree\ Disease\ Dataset/Coconut\ Tree\ Disease\ Dataset.zip && rm -rf preprocessing/datasets/gh56wbsnj5-1.zip`. 
 
+Alternatively, you can run `bash preprocessing/extract.sh`.
+
 ## Cleaning the datasets
 
 1. Run `python cleanup.py`.
