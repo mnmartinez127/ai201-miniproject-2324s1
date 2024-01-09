@@ -14,6 +14,9 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.neural_network import MLPClassifier
+from sklearn.preprocessing import LabelBinarizer
+
+from PIL import Image
 
 #ACTIVATION FUNCTIONS
 #define the hyperbolic tangent function with a=1.716 and b=2/3
@@ -41,6 +44,8 @@ def linear_f(v): #phi(v) = v
 
 def plot_results(y_predict,y_test,times,savename=""):
     os.makedirs(os.path.join("Result"),exist_ok=True)
+    y_test = np.argmax(y_test, axis=1)
+    y_predict = np.argmax(y_predict, axis=1)
     disp = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_predict)
     disp.figure_.suptitle(f"Confusion Matrix for classifier\n{savename}")
     print(f"Confusion matrix:\n{disp.confusion_matrix}")
@@ -56,9 +61,32 @@ def plot_results(y_predict,y_test,times,savename=""):
     np.savetxt(os.path.join("Result",f"{savename}-test.txt"),y_test)
 
 
+def load_images_from_folder(folder, target_size=(64, 64)):
+    images = []
+    labels = []
+    for class_id, label in enumerate(os.listdir(folder)):
+        class_folder = os.path.join(folder, label)
+        if os.path.isdir(class_folder):
+            for image_name in os.listdir(class_folder):
+                image_path = os.path.join(class_folder, image_name)
+                with Image.open(image_path) as img:
+                    img = img.resize(target_size)
+                    images.append(np.array(img))
+                    labels.append(class_id)
+    return np.array(images), np.array(labels)
 
-def eval_classifier(dataloader,classifier,savename=""):
-    X,y = dataloader(return_X_y=True)
+
+def preprocess_data(X, y):
+    X = X.reshape(X.shape[0], -1)
+    X = X.astype('float32') / 255  # normalize to range [0, 1]
+    lb = LabelBinarizer()
+    y = lb.fit_transform(y)  # one-hot encode the labels
+    return X, y
+
+
+def eval_classifier(classifier,savename=""):
+    X,y = load_images_from_folder('preprocessing/datasets/processed')
+    X,y = preprocess_data(X, y)
     X_train,X_test,y_train,y_test = train_test_split(X,y,test_size=0.7,train_size=0.3,random_state=random_state,shuffle=True if random_state is not None else False)
     t_start = time.time_ns()
     classifier.fit(X_train,y_train)
@@ -80,4 +108,4 @@ adaboost_classifiers = [[AdaBoostClassifier(n_estimators=n,random_state=random_s
 disc_classifiers = [[LinearDiscriminantAnalysis(),f"lda"],[QuadraticDiscriminantAnalysis(),f"qda"]]
 
 for clf,savename in elm_classifiers:
-    eval_classifier(load_data,clf,savename)
+    eval_classifier(clf, savename)
