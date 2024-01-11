@@ -4,15 +4,10 @@ import os, time
 
 from skelm import ELMClassifier
 from sklearn import metrics
-
-from skimage import color, feature, measure, filters, exposure
-
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
 from sklearn.ensemble import AdaBoostClassifier
-from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.preprocessing import LabelBinarizer
 from sklearn.svm import SVC
 
 
@@ -63,43 +58,7 @@ def plot_results(y_predict,y_test,times=None,savename="",show_plot=False):
     np.savetxt(os.path.join("Result",f"{savename}-test.txt"),y_test)
 
 
-def extract_features(image):
-    """ Assuming image is already preprocessed.
-    """
-    # texture feature
-    lbp = feature.local_binary_pattern(image, P=8, R=1)
-    lbp_hist, _ = np.histogram(lbp, bins=np.arange(257), range=(0, 256))
-    lbp_hist = lbp_hist.astype('float')
-    lbp_hist /= (lbp_hist.sum() + 1e-6)
-
-    # edge detection feature
-    edges = filters.sobel(image)
-    edge_area = np.sum(edges)
-
-    # getting histogram of pixel intensities
-    hist, _ = np.histogram(image, bins=256, range=(0,1))
-    hist = hist.astype('float')
-    hist /= (hist.sum() + 1e-6)
-
-    feature_vector = np.concatenate([lbp_hist, [edge_area], hist])
-
-    return feature_vector
-
-
-
-
-def apply_feature_extraction(X):
-    return np.array([extract_features(image) for image in X])
-
-def normalize_and_encode(X, y):
-    X = X.reshape(X.shape[0], -1) #convert to 1D
-    X = X.astype(np.float32) / 255.0  # normalize to range [0, 1]
-    lb = LabelBinarizer()
-    y = lb.fit_transform(y)  # one-hot encode the labels
-    return X, y
-
-def eval_classifier(classifier,data,classes,random_state=None,savename="",show_plot=False):
-    X_train,X_test,y_train,y_test = train_test_split(data,classes,test_size=0.7,train_size=0.3,random_state=random_state,shuffle=True if random_state is not None else False)
+def eval_classifier(classifier,X_train,X_test,y_train,y_test,savename="",show_plot=False):
     print("Starting classifier evaluation...")
     t_start = time.time_ns()
     classifier.fit(X_train,y_train)
@@ -109,31 +68,50 @@ def eval_classifier(classifier,data,classes,random_state=None,savename="",show_p
     print(f"Evaluation of {savename} complete!")
     plot_results(y_predict,y_test,[(t_train-t_start)*1e-9,(t_val-t_train)*1e-9],savename,show_plot=show_plot)
 
-
-
 if __name__ == "__main__":
+
     random_state = 13535
-
+    train_aug_count,test_aug_count = 5,3
+    limit=0
+    raw_path = 'data/datasets/Coconut Tree Disease Dataset/'
+    processed_path = 'data/datasets/processed/processed/'
+    split_path = 'data/datasets/split/'
+    processed_train_path = 'data/datasets/processed/train/'
+    processed_test_path = 'data/datasets/processed/test/'
     #Read and process the dataset
-    if not os.path.exists('data/datasets/processed'):
-        data = DataClass(folder_name='data/datasets/Coconut Tree Disease Dataset/',random_state=random_state)
+
+    if not os.path.exists(processed_path) or not os.path.exists(processed_train_path) or not os.path.exists(processed_test_path):
+        data = DataClass(folder_name=raw_path,random_state=random_state)
+        data.read_data(limit=limit)
         data.process_images(resize=True)
-        data.write_images('data/datasets/processed')
-    data = DataClass(folder_name='data/datasets/processed')
+        data.write_data(processed_path)
+        data.write_split_data(split_path,test_size=0.3,train_size=0.7,random_state=random_state,shuffle=True if random_state is not None else False,stratify=True)
+    data = DataClass(folder_name=processed_path)
+    train_data = DataClass(folder_name=os.path.join(split_path,"/train/"))
+    test_data = DataClass(folder_name=os.path.join(split_path,"/test/"))
 
-    X,y = data.get_dataset()
-    print(X.shape)
-    print(y.shape)
+    train_data.augment_images(train_aug_count)
+    test_data.augment_images(test_aug_count)
+    train_data.write_data(processed_train_path)
+    train_data.write_data(processed_test_path)
+    train_data = DataClass(folder_name=processed_train_path)
+    test_data = DataClass(folder_name=processed_test_path)
 
-    X = extract_features(X)
-    print(X.shape)
+    X_train,y_train = train_data.get_dataset()
+    X_train1,y_train1 = train_data.apply_feature_extraction(X_train,y_train) #contains features
+    X_train2,y_train2 = train_data.normalize_and_encode(X_train,y_train) #contains normalized images
+    X_train1,y_train1 = train_data.balance_data(X_train1,y_train1,apply_smote=True) #balance dataset
+    X_train2,y_train2 = train_data.balance_data(X_train2,y_train2,apply_smote=True) #balance dataset
+    print(X_train.shape)
+    print(y_train.shape)
 
-    X,y = data.smote_data(X,y)
-    print(X.shape)
-    print(y.shape)
-
-    X,y = normalize_and_encode(X, y)
-
+    X_test,y_test = test_data.get_dataset()
+    X_test1,y_test1 = test_data.apply_feature_extraction(X_test,y_test)
+    X_test2,y_test2 = test_data.normalize_and_encode(X_test,y_test)
+    z_test = np.array(test_data.filenames)
+    print(X_test.shape)
+    print(y_test.shape)
+    print(z_test.shape)
 
     elm_classifiers = [[ELMClassifier(n_neurons=num_hidden,ufunc=ufunc,random_state=random_state),f"elm-{num_hidden}_{ufunc.__name__}"]\
                         for num_hidden in [100,1000]\
@@ -144,5 +122,8 @@ if __name__ == "__main__":
     disc_classifiers = [[LinearDiscriminantAnalysis(),f"lda"],[QuadraticDiscriminantAnalysis(),f"qda"]]
     gauss_classifiers= [[GaussianNB()],f"gaussian_naivebayes"]
 
-    eval_classifier(elm_classifiers[0][0],X,y,random_state,elm_classifiers[0][1],True)
+    eval_classifier(elm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,elm_classifiers[0][1]+"-feature",True)
+    eval_classifier(elm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,elm_classifiers[0][1]+"-normalized",True)
+    eval_classifier(svm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,svm_classifiers[0][1]+"-feature",True)
+    eval_classifier(svm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,svm_classifiers[0][1]+"-normalized",True)
 
