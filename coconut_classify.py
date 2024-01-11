@@ -1,19 +1,20 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import cv2, os, time
-import imblearn
-from sklearn import metrics
-from sklearn.model_selection import train_test_split
-from sklearn.datasets import load_digits
+import os, time
 
 from skelm import ELMClassifier
-from sklearn.svm import SVC
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn import metrics
+
+from skimage import color, feature, measure, filters, exposure
+
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis, QuadraticDiscriminantAnalysis
 from sklearn.ensemble import AdaBoostClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import LabelBinarizer
-from sklearn.neural_network import MLPClassifier
+from sklearn.svm import SVC
+
 
 from data.dataclass import DataClass
 
@@ -62,8 +63,35 @@ def plot_results(y_predict,y_test,times=None,savename="",show_plot=False):
     np.savetxt(os.path.join("Result",f"{savename}-test.txt"),y_test)
 
 
+def extract_features(image):
+    """ Assuming image is already preprocessed.
+    """
+    # texture feature
+    lbp = feature.local_binary_pattern(image, P=8, R=1)
+    lbp_hist, _ = np.histogram(lbp, bins=np.arange(257), range=(0, 256))
+    lbp_hist = lbp_hist.astype('float')
+    lbp_hist /= (lbp_hist.sum() + 1e-6)
 
-def preprocess_data(X, y):
+    # edge detection feature
+    edges = filters.sobel(image)
+    edge_area = np.sum(edges)
+
+    # getting histogram of pixel intensities
+    hist, _ = np.histogram(image, bins=256, range=(0,1))
+    hist = hist.astype('float')
+    hist /= (hist.sum() + 1e-6)
+
+    feature_vector = np.concatenate([lbp_hist, [edge_area], hist])
+
+    return feature_vector
+
+
+
+
+def apply_feature_extraction(X):
+    return np.array([extract_features(image) for image in X])
+
+def normalize_and_encode(X, y):
     X = X.reshape(X.shape[0], -1) #convert to 1D
     X = X.astype(np.float32) / 255.0  # normalize to range [0, 1]
     lb = LabelBinarizer()
@@ -92,13 +120,19 @@ if __name__ == "__main__":
         data.process_images(resize=True)
         data.write_images('data/datasets/processed')
     data = DataClass(folder_name='data/datasets/processed')
+
     X,y = data.get_dataset()
     print(X.shape)
     print(y.shape)
+
+    X = extract_features(X)
+    print(X.shape)
+
     X,y = data.smote_data(X,y)
     print(X.shape)
     print(y.shape)
-    X,y = preprocess_data(X, y)
+
+    X,y = normalize_and_encode(X, y)
 
 
     elm_classifiers = [[ELMClassifier(n_neurons=num_hidden,ufunc=ufunc,random_state=random_state),f"elm-{num_hidden}_{ufunc.__name__}"]\
