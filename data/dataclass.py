@@ -84,10 +84,12 @@ class DataClass:
         if X is None or y is None:
             X,y = self.get_dataset()
         X_shape = X.shape
-        X = X.reshape(X.shape[0],-1)#Flatten image matrix before resizing
-        sm = SMOTE(random_state=random_state)
+        if len(X_shape) > 2:
+            X = X.reshape(X.shape[0],-1)#Flatten image matrix before resizing
+        sm = SMOTE(random_state=random_state.integers(2**32-1))
         X,y = sm.fit_resample(X,y)
-        X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
+        if len(X_shape) > 2:
+            X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
         return X,y
 
     def oversample_data(self,X=None,y=None,random_state=None):
@@ -124,9 +126,10 @@ class DataClass:
             X,y = self.undersample_data(X,y,random_state)
         return X,y
 
-    def extract_features(self,image):
+    def extract_features(self,image,is_gray = False):
         """ Assuming image is already preprocessed.
         """
+        if not is_gray: image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY) #convert to grayscale
         # texture feature
         lbp = skimage.feature.local_binary_pattern(image, P=8, R=1)
         lbp_hist, _ = np.histogram(lbp, bins=np.arange(257), range=(0, 256))
@@ -147,7 +150,7 @@ class DataClass:
         return feature_vector
 
 
-    def apply_feature_extraction(self,X):
+    def apply_feature_extraction(self,X,y):
         if X is None or y is None:
             X,y = self.get_dataset()
         X = np.array([self.extract_features(image) for image in X]) #get features of each image
@@ -160,7 +163,8 @@ class DataClass:
         """
         if X is None or y is None:
             X,y = self.get_dataset()
-        X = X.reshape(X.shape[0], -1) #convert to 1D
+        if len(X.shape) > 2:
+            X = X.reshape(X.shape[0], -1) #convert to 1D
         X = X.astype(np.float32) / 255.0  # normalize to range [0, 1]
         lb = LabelBinarizer()
         y = lb.fit_transform(y)  # one-hot encode the labels
@@ -185,7 +189,7 @@ class DataClass:
         ])
         ctr = 0
         print("Augmenting images...")
-        new_images,new_filenames,new_labels = [],[]
+        new_images,new_filenames,new_labels = [],[],[]
         for idx in range(len(self.images)):
             new_images_i,new_filenames_i,new_labels_i = self.augment_image(transform,self.images[idx],self.filenames[idx],self.labels[idx],count)
             new_images.extend(new_images_i)
@@ -267,7 +271,6 @@ class DataClass:
                 ctr += 1
                 print(f'Writing file {ctr}: {self.filenames[idx]}->{file_path}')
                 cv2.imwrite(file_path, self.images[idx])
-                self.filenames[idx] = file_path #update path
 
     def write_split_data(self,out_path='datasets/split',test_size=None,train_size=None,random_state = None,shuffle = True,stratify=None):
         assert len(self.images) == len(self.filenames) == len(self.labels)
@@ -277,7 +280,7 @@ class DataClass:
         print(f'Creating folder for split dataset...')
         os.makedirs(out_path,exist_ok=True)
         ctr = 0
-        for classidx,classname in enumerate(self.images):
+        for classidx,classname in enumerate(self.classes):
             dir_train_path = os.path.join(out_path, "train", classname)
             dir_test_path = os.path.join(out_path, "test", classname)
             dir_other_path = os.path.join(out_path, "other", classname)
@@ -299,7 +302,7 @@ class DataClass:
 if __name__ == "__main__":
  
     random_state = 13535
-    train_aug_count,test_aug_count = 5,3
+    train_aug_count,test_aug_count = 5,5
     limit=5
     raw_path = 'datasets/Coconut Tree Disease Dataset/'
     processed_path = 'datasets/processed/processed/'
@@ -312,30 +315,33 @@ if __name__ == "__main__":
     data.read_data(limit=limit)
     data.process_images(resize=True)
     data.write_data(processed_path)
-    data.write_split_data(split_path,test_size=0.3,train_size=0.7,random_state=random_state,shuffle=True if random_state is not None else False,stratify=True)
-
-    train_data = DataClass(folder_name=os.path.join(split_path,"/train/"))
-    test_data = DataClass(folder_name=os.path.join(split_path,"/test/"))
-
+    data.write_split_data(split_path,test_size=0.3,train_size=0.7,random_state=random_state,shuffle=True if random_state is not None else False,stratify=data.labels)
+    print("Split complete!")
+    train_data = DataClass(folder_name=os.path.join(split_path,"train/"))
+    test_data = DataClass(folder_name=os.path.join(split_path,"test/"))
+    train_data.read_data()
+    test_data.read_data()
     train_data.augment_images(train_aug_count)
     test_data.augment_images(test_aug_count)
     train_data.write_data(processed_train_path)
     train_data.write_data(processed_test_path)
     train_data = DataClass(folder_name=processed_train_path)
     test_data = DataClass(folder_name=processed_test_path)
-    
+    train_data.read_data()
+    test_data.read_data()
+
     X_train,y_train = train_data.get_dataset()
+    print(X_train.shape)
+    print(y_train.shape)
     X_train1,y_train1 = train_data.apply_feature_extraction(X_train,y_train) #contains features
     X_train2,y_train2 = train_data.normalize_and_encode(X_train,y_train) #contains normalized images
     X_train1,y_train1 = train_data.balance_data(X_train1,y_train1,apply_smote=True) #balance dataset
     X_train2,y_train2 = train_data.balance_data(X_train2,y_train2,apply_smote=True) #balance dataset
-    print(X_train.shape)
-    print(y_train.shape)
 
     X_test,y_test = test_data.get_dataset()
-    X_test1,y_test1 = test_data.apply_feature_extraction(X_test,y_test)
-    X_test2,y_test2 = test_data.normalize_and_encode(X_test,y_test)
     z_test = np.array(test_data.filenames)
     print(X_test.shape)
     print(y_test.shape)
     print(z_test.shape)
+    X_test1,y_test1 = test_data.apply_feature_extraction(X_test,y_test)
+    X_test2,y_test2 = test_data.normalize_and_encode(X_test,y_test)

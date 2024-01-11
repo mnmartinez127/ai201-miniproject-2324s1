@@ -85,7 +85,7 @@ if __name__ == "__main__":
         data.read_data(limit=limit)
         data.process_images(resize=True)
         data.write_data(processed_path)
-        data.write_split_data(split_path,test_size=0.3,train_size=0.7,random_state=random_state,shuffle=True if random_state is not None else False,stratify=True)
+        data.write_split_data(split_path,test_size=0.3,train_size=0.7,random_state=random_state,shuffle=True if random_state is not None else False,stratify=data.labels)
     data = DataClass(folder_name=processed_path)
     train_data = DataClass(folder_name=os.path.join(split_path,"/train/"))
     test_data = DataClass(folder_name=os.path.join(split_path,"/test/"))
@@ -112,6 +112,8 @@ if __name__ == "__main__":
     print(X_test.shape)
     print(y_test.shape)
     print(z_test.shape)
+
+
 
     elm_classifiers = [[ELMClassifier(n_neurons=num_hidden,ufunc=ufunc,random_state=random_state),f"elm-{num_hidden}_{ufunc.__name__}"]\
                         for num_hidden in [100,1000]\
