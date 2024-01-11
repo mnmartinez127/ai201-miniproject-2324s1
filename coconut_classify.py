@@ -38,7 +38,7 @@ def elu_f(v,a=1.67326,l=1.0507): #phi(v) = lv if v >= 0, la(e^v - 1) if v < 0
 def linear_f(v): #phi(v) = v
     return v
 
-def plot_results(y_predict,y_test,times=None,savename="",show_plot=False):
+def plot_results(y_predict,y_test,z_test,times=None,savename="",show_plot=False):
     os.makedirs(os.path.join("Result"),exist_ok=True)
     y_test = np.argmax(y_test, axis=1)
     y_predict = np.argmax(y_predict, axis=1)
@@ -56,9 +56,10 @@ def plot_results(y_predict,y_test,times=None,savename="",show_plot=False):
         f.write(metrics.classification_report(y_test, y_predict))
     np.savetxt(os.path.join("Result",f"{savename}-predict.txt"),y_predict)
     np.savetxt(os.path.join("Result",f"{savename}-test.txt"),y_test)
+    np.savetxt(os.path.join("Result",f"{savename}-filenames.txt"),z_test)
 
 
-def eval_classifier(classifier,X_train,X_test,y_train,y_test,savename="",show_plot=False):
+def eval_classifier(classifier,X_train,X_test,y_train,y_test,z_test,savename="",show_plot=False):
     print("Starting classifier evaluation...")
     t_start = time.time_ns()
     classifier.fit(X_train,y_train)
@@ -66,7 +67,7 @@ def eval_classifier(classifier,X_train,X_test,y_train,y_test,savename="",show_pl
     y_predict = classifier.predict(X_test)
     t_val = time.time_ns()
     print(f"Evaluation of {savename} complete!")
-    plot_results(y_predict,y_test,[(t_train-t_start)*1e-9,(t_val-t_train)*1e-9],savename,show_plot=show_plot)
+    plot_results(y_predict,y_test,z_test,[(t_train-t_start)*1e-9,(t_val-t_train)*1e-9],savename,show_plot=show_plot)
 
 if __name__ == "__main__":
 
@@ -80,40 +81,45 @@ if __name__ == "__main__":
     processed_test_path = 'data/datasets/processed/test/'
     #Read and process the dataset
 
-    if not os.path.exists(processed_path) or not os.path.exists(processed_train_path) or not os.path.exists(processed_test_path):
+    if not os.path.exists(processed_path):
         data = DataClass(folder_name=raw_path,random_state=random_state)
         data.read_data(limit=limit)
         data.process_images(resize=True)
         data.write_data(processed_path)
         data.write_split_data(split_path,test_size=0.3,train_size=0.7,random_state=random_state,shuffle=True if random_state is not None else False,stratify=data.labels)
+        print("Split complete!")
     data = DataClass(folder_name=processed_path)
-    train_data = DataClass(folder_name=os.path.join(split_path,"/train/"))
-    test_data = DataClass(folder_name=os.path.join(split_path,"/test/"))
 
-    train_data.augment_images(train_aug_count)
-    test_data.augment_images(test_aug_count)
-    train_data.write_data(processed_train_path)
-    train_data.write_data(processed_test_path)
+    if not os.path.exists(processed_train_path) or not os.path.exists(processed_test_path):
+        train_data = DataClass(folder_name=os.path.join(split_path,"train/"))
+        test_data = DataClass(folder_name=os.path.join(split_path,"test/"))
+        train_data.read_data()
+        test_data.read_data()
+        train_data.augment_images(train_aug_count)
+        test_data.augment_images(test_aug_count)
+        train_data.write_data(processed_train_path)
+        train_data.write_data(processed_test_path)
+
     train_data = DataClass(folder_name=processed_train_path)
     test_data = DataClass(folder_name=processed_test_path)
+    train_data.read_data()
+    test_data.read_data()
 
     X_train,y_train = train_data.get_dataset()
+    print(X_train.shape)
+    print(y_train.shape)
     X_train1,y_train1 = train_data.apply_feature_extraction(X_train,y_train) #contains features
     X_train2,y_train2 = train_data.normalize_and_encode(X_train,y_train) #contains normalized images
     X_train1,y_train1 = train_data.balance_data(X_train1,y_train1,apply_smote=True) #balance dataset
     X_train2,y_train2 = train_data.balance_data(X_train2,y_train2,apply_smote=True) #balance dataset
-    print(X_train.shape)
-    print(y_train.shape)
 
     X_test,y_test = test_data.get_dataset()
-    X_test1,y_test1 = test_data.apply_feature_extraction(X_test,y_test)
-    X_test2,y_test2 = test_data.normalize_and_encode(X_test,y_test)
     z_test = np.array(test_data.filenames)
     print(X_test.shape)
     print(y_test.shape)
     print(z_test.shape)
-
-
+    X_test1,y_test1 = test_data.apply_feature_extraction(X_test,y_test)
+    X_test2,y_test2 = test_data.normalize_and_encode(X_test,y_test)
 
     elm_classifiers = [[ELMClassifier(n_neurons=num_hidden,ufunc=ufunc,random_state=random_state),f"elm-{num_hidden}_{ufunc.__name__}"]\
                         for num_hidden in [100,1000]\
@@ -124,8 +130,15 @@ if __name__ == "__main__":
     disc_classifiers = [[LinearDiscriminantAnalysis(),f"lda"],[QuadraticDiscriminantAnalysis(),f"qda"]]
     gauss_classifiers= [[GaussianNB()],f"gaussian_naivebayes"]
 
-    eval_classifier(elm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,elm_classifiers[0][1]+"-feature",True)
-    eval_classifier(elm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,elm_classifiers[0][1]+"-normalized",True)
-    eval_classifier(svm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,svm_classifiers[0][1]+"-feature",True)
-    eval_classifier(svm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,svm_classifiers[0][1]+"-normalized",True)
+    classifiers = elm_classifiers+knn_classifiers+adaboost_classifiers+disc_classifiers+gauss_classifiers
 
+    eval_classifier(elm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,elm_classifiers[0][1]+"-feature",True)
+    eval_classifier(elm_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,elm_classifiers[0][1]+"-normalized",True)
+    eval_classifier(svm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,svm_classifiers[0][1]+"-feature",True)
+    eval_classifier(svm_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,svm_classifiers[0][1]+"-normalized",True)
+
+
+    for idx in range(len(classifiers)):
+        print(f"Evaluating classifier {idx}/{len(classifiers)}: {classifiers[idx][1]}")
+        eval_classifier(classifiers[idx][0],X_train1,X_test1,y_train1,y_test1,z_test,classifiers[idx][1]+"-feature",False)
+        eval_classifier(classifiers[idx][0],X_train2,X_test2,y_train2,y_test2,z_test,classifiers[idx][1]+"-normalized",False)
