@@ -40,8 +40,11 @@ def linear_f(v): #phi(v) = v
 
 def plot_results(y_predict,y_test,z_test,times=None,savename="",show_plot=False):
     os.makedirs(os.path.join("Result"),exist_ok=True)
-    y_test = np.argmax(y_test, axis=1)
-    y_predict = np.argmax(y_predict, axis=1)
+    assert len(y_test.shape) <= 2 and len(y_test.shape) == len(y_predict.shape)
+    if len(y_test.shape) == 2:
+        y_test = np.argmax(y_test, axis=1)
+    if len(y_predict.shape) == 2:
+        y_predict = np.argmax(y_predict, axis=1)
     disp = metrics.ConfusionMatrixDisplay.from_predictions(y_test, y_predict)
     disp.figure_.suptitle(f"Confusion Matrix for classifier\n{savename}")
     if show_plot:
@@ -49,31 +52,32 @@ def plot_results(y_predict,y_test,z_test,times=None,savename="",show_plot=False)
         disp.figure_.show()
         disp.figure_.waitforbuttonpress()
     disp.figure_.savefig(os.path.join("Result",f"{savename}-confmat.png"))
-    disp.figure_.clear()
     with open(os.path.join("Result",f"{savename}-metrics.txt"),'w') as f:
         f.write(f"\nTraining time (s): {times[0]}")
         f.write(f"\nTesting time (s): {times[1]}")
         f.write(metrics.classification_report(y_test, y_predict))
     np.savetxt(os.path.join("Result",f"{savename}-predict.txt"),y_predict)
     np.savetxt(os.path.join("Result",f"{savename}-test.txt"),y_test)
-    np.savetxt(os.path.join("Result",f"{savename}-filenames.txt"),z_test)
+    np.savetxt(os.path.join("Result",f"{savename}-filenames.txt"),z_test,fmt="%s")
 
 
 def eval_classifier(classifier,X_train,X_test,y_train,y_test,z_test,savename="",show_plot=False):
-    print("Starting classifier evaluation...")
+    print(f"Starting classifier {savename} evaluation...")
     t_start = time.time_ns()
     classifier.fit(X_train,y_train)
     t_train = time.time_ns()
     y_predict = classifier.predict(X_test)
     t_val = time.time_ns()
+    times=[(t_train-t_start)*1e-9,(t_val-t_train)*1e-9]
     print(f"Evaluation of {savename} complete!")
-    plot_results(y_predict,y_test,z_test,[(t_train-t_start)*1e-9,(t_val-t_train)*1e-9],savename,show_plot=show_plot)
+    print(f"Training time: {times[0]} seconds | Testing time: {times[1]} seconds")
+    plot_results(y_predict,y_test,z_test,times,savename,show_plot=show_plot)
 
 if __name__ == "__main__":
 
     random_state = 13535
-    train_aug_count,test_aug_count = 5,3
-    limit=0
+    train_aug_count,test_aug_count = 5,5
+    limit=10 #set to 0 for the actual evaluation
     raw_path = 'data/datasets/Coconut Tree Disease Dataset/'
     processed_path = 'data/datasets/processed/processed/'
     split_path = 'data/datasets/split/'
@@ -106,39 +110,86 @@ if __name__ == "__main__":
     test_data.read_data()
 
     X_train,y_train = train_data.get_dataset()
-    print(X_train.shape)
-    print(y_train.shape)
+    print(f"Training images shape: {X_train.shape}")
+    print(f"Training labels shape: {y_train.shape}")
     X_train1,y_train1 = train_data.apply_feature_extraction(X_train,y_train) #contains features
     X_train2,y_train2 = train_data.normalize_and_encode(X_train,y_train) #contains normalized images
-    X_train1,y_train1 = train_data.balance_data(X_train1,y_train1,apply_smote=True) #balance dataset
-    X_train2,y_train2 = train_data.balance_data(X_train2,y_train2,apply_smote=True) #balance dataset
+    X_train1,y_train1 = train_data.balance_data(X_train1,y_train1,apply_oversampling=True) #balance dataset
+    X_train2,y_train2 = train_data.balance_data(X_train2,y_train2,apply_oversampling=True) #balance dataset
+    y_train1_encoded = train_data.encode_labels(y_train1) #encode labels
+    y_train2_encoded = train_data.encode_labels(y_train2) #encode labels
+    print(f"Training images features shape: {X_train1.shape}")
+    print(f"Training labels features shape: {y_train1.shape}")
+    print(f"Training labels features encoded shape: {y_train1_encoded.shape}")
+    print(f"Training images normalized shape: {X_train2.shape}")
+    print(f"Training labels normalized shape: {y_train2.shape}")
+    print(f"Training labels normalized encoded shape: {y_train2_encoded.shape}")
 
     X_test,y_test = test_data.get_dataset()
     z_test = np.array(test_data.filenames)
-    print(X_test.shape)
-    print(y_test.shape)
-    print(z_test.shape)
+    print(f"Testing images shape: {X_test.shape}")
+    print(f"Testing labels shape: {y_test.shape}")
+    print(f"Testing filenames shape: {z_test.shape}")
     X_test1,y_test1 = test_data.apply_feature_extraction(X_test,y_test)
     X_test2,y_test2 = test_data.normalize_and_encode(X_test,y_test)
+    y_test1_encoded = test_data.encode_labels(y_test1) #encode labels
+    y_test2_encoded = test_data.encode_labels(y_test2) #encode labels
+    print(f"Testing images features shape: {X_test1.shape}")
+    print(f"Testing labels features shape: {y_test1.shape}")
+    print(f"Testing labels normalized encoded shape: {y_test1_encoded.shape}")
+    print(f"Testing images normalized shape: {X_test2.shape}")
+    print(f"Testing labels normalized shape: {y_test2.shape}")
+    print(f"Testing labels normalized encoded shape: {y_test2_encoded.shape}")
 
+
+    print("Loading classifiers...")
     elm_classifiers = [[ELMClassifier(n_neurons=num_hidden,ufunc=ufunc,random_state=random_state),f"elm-{num_hidden}_{ufunc.__name__}"]\
                         for num_hidden in [100,1000]\
                         for ufunc in [tanh_f,log_f,swish_f,lrelu_f,elu_f,linear_f]]
     knn_classifiers = [[KNeighborsClassifier(i),f"knn_{i}"] for i in range(3,11)]
-    svm_classifiers = [[SVC(kernel=kernel, C=0.025, random_state=random_state),f"svm_{kernel}"] for kernel in ["rbf","linear","poly"]],
+    svm_classifiers = [[SVC(kernel=kernel, C=0.025, random_state=random_state,decision_function_shape=shape),f"svm_{kernel}_shape"]\
+                        for kernel in ["rbf","linear","poly"]\
+                        for shape in ["ovo","ovr"]]
+    disc_classifiers = [[LinearDiscriminantAnalysis(),f"linear_discriminant_analysis"],[QuadraticDiscriminantAnalysis(),f"quadratic_discriminant_analysis"]]
+    gauss_classifiers= [[GaussianNB(),f"gaussian_naivebayes"]]
     adaboost_classifiers = [[AdaBoostClassifier(n_estimators=n,random_state=random_state),f"adaboost_{n}"] for n in range(10,101,10)]
-    disc_classifiers = [[LinearDiscriminantAnalysis(),f"lda"],[QuadraticDiscriminantAnalysis(),f"qda"]]
-    gauss_classifiers= [[GaussianNB()],f"gaussian_naivebayes"]
 
-    classifiers = elm_classifiers+knn_classifiers+adaboost_classifiers+disc_classifiers+gauss_classifiers
+    classifiers = elm_classifiers+knn_classifiers+svm_classifiers+disc_classifiers+gauss_classifiers+adaboost_classifiers
 
+    #'''
+
+    print(f"Evaluating test classifier ELM: {elm_classifiers[0][1]}")
     eval_classifier(elm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,elm_classifiers[0][1]+"-feature",True)
     eval_classifier(elm_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,elm_classifiers[0][1]+"-normalized",True)
+
+    print(f"Evaluating test classifier KNN: {knn_classifiers[0][1]}")
+    eval_classifier(knn_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,knn_classifiers[0][1]+"-feature",True)
+    eval_classifier(knn_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,knn_classifiers[0][1]+"-normalized",True)
+
+    print(f"Evaluating test classifier SVM: {svm_classifiers[0][1]}")
     eval_classifier(svm_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,svm_classifiers[0][1]+"-feature",True)
     eval_classifier(svm_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,svm_classifiers[0][1]+"-normalized",True)
 
+    print(f"Evaluating test classifier Discriminant: {disc_classifiers[0][1]}")
+    eval_classifier(disc_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,disc_classifiers[0][1]+"-feature",True)
+    eval_classifier(disc_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,disc_classifiers[0][1]+"-normalized",True)
+
+    print(f"Evaluating test classifier Gaussian Naive Bayes: {gauss_classifiers[0][1]}")
+    eval_classifier(gauss_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,gauss_classifiers[0][1]+"-feature",True)
+    eval_classifier(gauss_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,gauss_classifiers[0][1]+"-normalized",True)
+
+    print(f"Evaluating test classifier Adaboost: {adaboost_classifiers[0][1]}")
+    eval_classifier(adaboost_classifiers[0][0],X_train1,X_test1,y_train1,y_test1,z_test,adaboost_classifiers[0][1]+"-feature",True)
+    eval_classifier(adaboost_classifiers[0][0],X_train2,X_test2,y_train2,y_test2,z_test,adaboost_classifiers[0][1]+"-normalized",True)
+
+    print("Testing complete!")
+    exit()
+
+    #'''
 
     for idx in range(len(classifiers)):
         print(f"Evaluating classifier {idx}/{len(classifiers)}: {classifiers[idx][1]}")
         eval_classifier(classifiers[idx][0],X_train1,X_test1,y_train1,y_test1,z_test,classifiers[idx][1]+"-feature",False)
         eval_classifier(classifiers[idx][0],X_train2,X_test2,y_train2,y_test2,z_test,classifiers[idx][1]+"-normalized",False)
+
+

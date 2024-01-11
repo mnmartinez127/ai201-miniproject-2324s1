@@ -61,7 +61,10 @@ class DataClass:
             self.images = self.read_data(limit=limit)
         return np.array(self.images),np.array(self.labels)
 
-
+    def get_filepaths(self,limit=0): #get the filepaths for the dataset
+        if len(self.images) == 0: #load data if not yet loaded or processed
+            self.images = self.read_data(limit=limit)
+        return np.array(self.images),np.array(self.labels)
 
     def _k_means(self,img):
         Z = np.float32(img.reshape((-1,3)))
@@ -73,16 +76,7 @@ class DataClass:
         res2 = res.reshape((img.shape))
         return res2
 
-
-
-
-
-    def smote_data(self,X=None,y=None,random_state=None):
-        #Use only on training set!
-        if random_state is None:
-            random_state = self.randomizer
-        if X is None or y is None:
-            X,y = self.get_dataset()
+    def _smote_data(self,X=None,y=None,random_state=None):
         X_shape = X.shape
         if len(X_shape) > 2:
             X = X.reshape(X.shape[0],-1)#Flatten image matrix before resizing
@@ -92,22 +86,12 @@ class DataClass:
             X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
         return X,y
 
-    def oversample_data(self,X=None,y=None,random_state=None):
-        #Use only on training set!
-        if random_state is None:
-            random_state = self.randomizer
-        if X is None or y is None:
-            X,y = self.get_dataset()
+    def _oversample_data(self,X=None,y=None,random_state=None):
         ros = RandomOverSampler(sampling_strategy="minority")
         X,y = ros.fit_resample(X,y)
         return X,y
 
-    def undersample_data(self,X=None,y=None,random_state=None):
-        #Use only on training set!
-        if random_state is None:
-            random_state = self.randomizer
-        if X is None or y is None:
-            X,y = self.get_dataset()
+    def _undersample_data(self,X=None,y=None,random_state=None):
         ros = RandomUnderSampler(sampling_strategy="majority")
         X,y = ros.fit_resample(X,y)
         return X,y
@@ -119,11 +103,11 @@ class DataClass:
         if X is None or y is None:
             X,y = self.get_dataset()
         if apply_smote:
-            X,y = self.smote_data(X,y,random_state)
+            X,y = self._smote_data(X,y,random_state)
         if apply_oversampling:
-            X,y = self.oversample_data(X,y,random_state)
+            X,y = self._oversample_data(X,y,random_state)
         if apply_undersampling:
-            X,y = self.undersample_data(X,y,random_state)
+            X,y = self._undersample_data(X,y,random_state)
         return X,y
 
     def extract_features(self,image,is_gray = False):
@@ -150,15 +134,16 @@ class DataClass:
         return feature_vector
 
 
-    def apply_feature_extraction(self,X,y):
+    def apply_feature_extraction(self,X,y, encode=False):
         if X is None or y is None:
             X,y = self.get_dataset()
         X = np.array([self.extract_features(image) for image in X]) #get features of each image
-        lb = LabelBinarizer()
-        y = lb.fit_transform(y)  # one-hot encode the labels
+        if encode:
+            lb = LabelBinarizer()
+            y = lb.fit_transform(y)  # one-hot encode the labels
         return X, y
 
-    def normalize_and_encode(self,X, y):
+    def normalize_and_encode(self,X, y, encode=False):
         """ Assuming image is already preprocessed.
         """
         if X is None or y is None:
@@ -166,10 +151,17 @@ class DataClass:
         if len(X.shape) > 2:
             X = X.reshape(X.shape[0], -1) #convert to 1D
         X = X.astype(np.float32) / 255.0  # normalize to range [0, 1]
-        lb = LabelBinarizer()
-        y = lb.fit_transform(y)  # one-hot encode the labels
+        if encode:
+            lb = LabelBinarizer()
+            y = lb.fit_transform(y)  # one-hot encode the labels
         return X, y
 
+    def encode_labels(self,y):
+        if y is None:
+            _,y = self.get_dataset()
+        lb = LabelBinarizer()
+        y = lb.fit_transform(y)  # one-hot encode the labels
+        return y
 
     def augment_image(self,transform,image,filename,label,count=10):
         new_images,new_filenames,new_labels = [],[],[]
@@ -207,9 +199,8 @@ class DataClass:
                         apply_filter=False, segment_images=False, k_means = False,
                           display_images=False, limit=0):
         print("Processing images...")
-        ctr = 0
         self.get_dataset(limit) #load data if not yet loaded
-
+        ctr = 0
         processed_images = []
         assert len(self.images) == len(self.filenames) == len(self.labels)
         for idx in range(len(self.images)):
@@ -247,6 +238,7 @@ class DataClass:
         print("Image processing complete!")
 
     def show_images(self, start, stop=None):
+        self.get_dataset()
         assert len(self.images) == len(self.filenames) == len(self.labels)
         if not stop: start,stop = 0,start
         for classidx in self.classes:
@@ -258,6 +250,7 @@ class DataClass:
                 cv2.destroyAllWindows()
 
     def write_data(self, out_path='datasets/processed'):
+        self.get_dataset()
         assert len(self.images) == len(self.filenames) == len(self.labels)
         print(f'Creating folder for processed dataset...')
         os.makedirs(out_path,exist_ok=True)
@@ -273,6 +266,7 @@ class DataClass:
                 cv2.imwrite(file_path, self.images[idx])
 
     def write_split_data(self,out_path='datasets/split',test_size=None,train_size=None,random_state = None,shuffle = True,stratify=None):
+        self.get_dataset()
         assert len(self.images) == len(self.filenames) == len(self.labels)
         #Splits the image paths to save training and testing sets in separate folders
         train_idx,test_idx, = train_test_split(range(len(self.images)),test_size=0.7,train_size=0.3,random_state=random_state,shuffle=shuffle,stratify=stratify)
