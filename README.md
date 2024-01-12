@@ -13,18 +13,15 @@ Note: This assumes the use of pyenv, but you can use any package manager / pytho
 4. Run `pyenv virtualenv 3.10 venv` to create a virtualenv tied to the 3.10 shim.
 5. Run `pip install -r requirements.txt` to install the necessary packages.
 
-
-
 ## Importing the datasets
 
 1. `cd` into the root of the project.
-2. Install wget if you haven't already. Run `wget https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/gh56wbsnj5-1.zip -P preprocessing/datasets`
-3. Unzip the compressed folder. Run `unzip preprocessing/datasets/gh56wbsnj5-1.zip -d preprocessing/datasets/`.
-4. Unzip the dataset once more. Run `unzip preprocessing/datasets/Coconut\ Tree\ Disease\ Dataset/Coconut\ Tree\ Disease\ Dataset.zip -d preprocessing/datasets/`.
-5. Delete zip artifacts. Run `rm -rf preprocessing/datasets/Coconut\ Tree\ Disease\ Dataset/Coconut\ Tree\ Disease\ Dataset.zip && rm -rf preprocessing/datasets/gh56wbsnj5-1.zip`. 
+2. Install wget if you haven't already. Run `wget "https://prod-dcd-datasets-cache-zipfiles.s3.eu-west-1.amazonaws.com/gh56wbsnj5-1.zip" -P "datasets/"`
+3. Unzip the compressed folder. Run `unzip -q "datasets/gh56wbsnj5-1.zip" -d "datasets/"` followed by `rm "datasets/gh56wbsnj5-1.zip"` to delete the zip file.
+4. Unzip the dataset once more. Run `unzip -q "datasets/Coconut Tree Disease Dataset/Coconut Tree Disease Dataset.zip" -d "datasets/"` followed by `rm "datasets/Coconut Tree Disease Dataset/Coconut Tree Disease Dataset.zip"` to delete the zip file.
 
 Alternatively, you can run `bash preprocessing/extract.sh`.
 
-## Cleaning the datasets
+## Preprocessing the datasets
 
-1. Run `python cleanup.py`.
+1. Run `python dataclass.py` to preprocess the dataset into augmented training and testing sets of 255px by 255px images.

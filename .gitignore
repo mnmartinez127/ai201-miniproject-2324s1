@@ -1,4 +1,4 @@
-data/datasets/
+__pycache__
 .DS_Store
-Result/
-preprocessing/
+datasets/
+results/
