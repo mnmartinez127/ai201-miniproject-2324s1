@@ -1,0 +1,22 @@
+Classifier: elm-10000_Leaky ReLU_hsv
+              precision    recall  f1-score   support
+
+           0       1.00      0.99      0.99       198
+           1       0.99      0.99      0.99       216
+           2       0.92      0.97      0.95       214
+           3       1.00      0.92      0.96       159
+           4       0.94      0.95      0.94       217
+
+    accuracy                           0.97      1004
+   macro avg       0.97      0.96      0.97      1004
+weighted avg       0.97      0.97      0.97      1004
+
+F1 Score: [0.99492386 0.98611111 0.94545455 0.95737705 0.94279176]
+MCC: 0.9564465693948112
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [1.         0.98611111 0.92035398 1.         0.93636364]
+Recall: [0.98989899 0.98611111 0.97196262 0.91823899 0.94930876]
+
+Training time (s): 24.811567500000002
+Testing time (s): 0.1480594
+

@@ -1,0 +1,22 @@
+Classifier: elm-8000_Logistic_hsv
+              precision    recall  f1-score   support
+
+           0       0.85      0.74      0.79       198
+           1       0.72      0.78      0.75       216
+           2       0.82      0.82      0.82       214
+           3       0.83      0.89      0.86       159
+           4       0.63      0.63      0.63       217
+
+    accuracy                           0.76      1004
+   macro avg       0.77      0.77      0.77      1004
+weighted avg       0.77      0.76      0.76      1004
+
+F1 Score: [0.79132791 0.74832962 0.82242991 0.8597561  0.63133641]
+MCC: 0.7058114647455923
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [0.85380117 0.72103004 0.82242991 0.83431953 0.63133641]
+Recall: [0.73737374 0.77777778 0.82242991 0.88679245 0.63133641]
+
+Training time (s): 17.457702400000002
+Testing time (s): 0.4221068
+

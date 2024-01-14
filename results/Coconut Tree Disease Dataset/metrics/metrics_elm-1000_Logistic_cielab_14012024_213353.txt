@@ -1,0 +1,22 @@
+Classifier: elm-1000_Logistic_cielab
+              precision    recall  f1-score   support
+
+           0       0.48      0.78      0.60       103
+           1       0.39      0.80      0.52        94
+           2       0.76      0.45      0.57       427
+           3       0.62      0.61      0.62       335
+           4       0.93      1.00      0.96       201
+
+    accuracy                           0.65      1160
+   macro avg       0.64      0.73      0.65      1160
+weighted avg       0.70      0.65      0.65      1160
+
+F1 Score: [0.59701493 0.52083333 0.56975037 0.61861862 0.96402878]
+MCC: 0.5648345479923861
+Classes: ['Bud Root Dropping' 'Bud Rot' 'Gray Leaf Spot' 'Leaf Rot' 'Stem Bleeding']
+Precision: [0.48484848 0.38659794 0.76377953 0.6223565  0.93055556]
+Recall: [0.77669903 0.79787234 0.45433255 0.61492537 1.        ]
+
+Training time (s): 0.7768808
+Testing time (s): 0.044005
+

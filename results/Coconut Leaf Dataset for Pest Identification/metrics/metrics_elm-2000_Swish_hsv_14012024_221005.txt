@@ -1,0 +1,22 @@
+Classifier: elm-2000_Swish_hsv
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      0.99       198
+           1       1.00      0.99      1.00       216
+           2       1.00      0.98      0.99       214
+           3       0.99      0.99      0.99       159
+           4       0.99      1.00      0.99       217
+
+    accuracy                           0.99      1004
+   macro avg       0.99      0.99      0.99      1004
+weighted avg       0.99      0.99      0.99      1004
+
+F1 Score: [0.99497487 0.99534884 0.98823529 0.99371069 0.99313501]
+MCC: 0.9912749191805346
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [0.99       1.         0.99526066 0.99371069 0.98636364]
+Recall: [1.         0.99074074 0.98130841 0.99371069 1.        ]
+
+Training time (s): 1.1716298
+Testing time (s): 0.0760083
+

@@ -1,0 +1,1800 @@
+Classifier: elm-1000_Logistic_rgb
+
+Accuracy: 0.475
+Balanced Accuracy: 0.5458860038215209
+F1 Score: [0.42352941 0.42580645 0.38245614 0.44779874 0.73846154]
+MCC: 0.35019028210718706
+
+Training time (s): 0.7040661
+Testing time (s): 0.0399882
+
+Classifier: elm-1000_Logistic_rgb_lbp
+
+Accuracy: 0.39741379310344827
+Balanced Accuracy: 0.4667738976471857
+F1 Score: [0.36526946 0.23863636 0.33916084 0.36024845 0.6937799 ]
+MCC: 0.27062416274439904
+
+Training time (s): 0.7860566
+Testing time (s): 0.0520306
+
+Classifier: elm-1000_Logistic_hsv
+
+Accuracy: 0.6129310344827587
+Balanced Accuracy: 0.6917018017059133
+F1 Score: [0.63519313 0.55639098 0.52678571 0.57831325 0.8       ]
+MCC: 0.512891335731854
+
+Training time (s): 0.7148724000000001
+Testing time (s): 0.0399631
+
+Classifier: elm-1000_Logistic_hsv_lbp
+
+Accuracy: 0.6405172413793103
+Balanced Accuracy: 0.7097964220223305
+F1 Score: [0.66666667 0.44257703 0.59600614 0.60895522 0.90410959]
+MCC: 0.5605722353736328
+
+Training time (s): 0.7599713
+Testing time (s): 0.044032
+
+Classifier: elm-1000_Logistic_cielab
+
+Accuracy: 0.6517241379310345
+Balanced Accuracy: 0.7287658590758564
+F1 Score: [0.59701493 0.52083333 0.56975037 0.61861862 0.96402878]
+MCC: 0.5648345479923861
+
+Training time (s): 0.7768808
+Testing time (s): 0.044005
+
+Classifier: elm-1000_Logistic_cielab_lbp
+
+Accuracy: 0.7068965517241379
+Balanced Accuracy: 0.7952755821474503
+F1 Score: [0.84821429 0.55405405 0.58938547 0.6884273  0.97560976]
+MCC: 0.6286886322457272
+
+Training time (s): 0.7762479000000001
+Testing time (s): 0.0460028
+
+Classifier: elm-2000_Logistic_rgb
+
+Accuracy: 0.32068965517241377
+Balanced Accuracy: 0.28391338824686185
+F1 Score: [0.19620253 0.21875    0.37333333 0.33295063 0.32941176]
+MCC: 0.08242895854327884
+
+Training time (s): 2.1079656
+Testing time (s): 0.0810339
+
+Classifier: elm-2000_Logistic_rgb_lbp
+
+Accuracy: 0.5293103448275862
+Balanced Accuracy: 0.5645591121007831
+F1 Score: [0.42152466 0.31958763 0.55867347 0.45816733 0.80851064]
+MCC: 0.4128893465113968
+
+Training time (s): 1.9069994000000001
+Testing time (s): 0.0820071
+
+Classifier: elm-2000_Logistic_hsv
+
+Accuracy: 0.36551724137931035
+Balanced Accuracy: 0.4233715559309081
+F1 Score: [0.51461988 0.22857143 0.2519685  0.45006017 0.48421053]
+MCC: 0.2406029531023809
+
+Training time (s): 1.9315519
+Testing time (s): 0.07603710000000001
+
+Classifier: elm-2000_Logistic_hsv_lbp
+
+Accuracy: 0.6655172413793103
+Balanced Accuracy: 0.7462349699121761
+F1 Score: [0.73488372 0.50299401 0.62087912 0.57637795 0.98039216]
+MCC: 0.5785533072690157
+
+Training time (s): 1.9130334000000002
+Testing time (s): 0.0840109
+
+Classifier: elm-2000_Logistic_cielab
+
+Accuracy: 0.6879310344827586
+Balanced Accuracy: 0.7902787133892971
+F1 Score: [0.83050847 0.4984985  0.56676558 0.68693009 0.95465394]
+MCC: 0.6171975315994237
+
+Training time (s): 1.8675187000000002
+Testing time (s): 0.0800019
+
+Classifier: elm-2000_Logistic_cielab_lbp
+
+Accuracy: 0.4043103448275862
+Balanced Accuracy: 0.41841104529035744
+F1 Score: [0.42028986 0.15198618 0.47281922 0.29955947 0.7877095 ]
+MCC: 0.27795900130868667
+
+Training time (s): 1.8811141
+Testing time (s): 0.08397270000000001
+
+Classifier: elm-3000_Logistic_rgb
+
+Accuracy: 0.44310344827586207
+Balanced Accuracy: 0.516044627053908
+F1 Score: [0.33742331 0.29069767 0.33587786 0.4320298  0.79912664]
+MCC: 0.3227514925052369
+
+Training time (s): 3.4772057000000003
+Testing time (s): 0.11260070000000001
+
+Classifier: elm-3000_Logistic_rgb_lbp
+
+Accuracy: 0.6017241379310345
+Balanced Accuracy: 0.6580371907134366
+F1 Score: [0.576      0.5483871  0.58839406 0.5410628  0.74782609]
+MCC: 0.4876143686681168
+
+Training time (s): 3.4844757000000004
+Testing time (s): 0.1280008
+
+Classifier: elm-3000_Logistic_hsv
+
+Accuracy: 0.4646551724137931
+Balanced Accuracy: 0.4252250805098683
+F1 Score: [0.33962264 0.17699115 0.51057402 0.44522145 0.58767773]
+MCC: 0.2968977186265363
+
+Training time (s): 3.4213828000000004
+Testing time (s): 0.1200413
+
+Classifier: elm-3000_Logistic_hsv_lbp
+
+Accuracy: 0.596551724137931
+Balanced Accuracy: 0.6493343506611123
+F1 Score: [0.65686275 0.64888889 0.54481132 0.48192771 0.84960422]
+MCC: 0.4560106016905382
+
+Training time (s): 3.5388381000000004
+Testing time (s): 0.1360364
+
+Classifier: elm-3000_Logistic_cielab
+
+Accuracy: 0.7241379310344828
+Balanced Accuracy: 0.8080009261483616
+F1 Score: [0.83261803 0.5625     0.61473088 0.72619048 0.95486936]
+MCC: 0.652954046756099
+
+Training time (s): 3.5373078000000002
+Testing time (s): 0.1309987
+
+Classifier: elm-3000_Logistic_cielab_lbp
+
+Accuracy: 0.6853448275862069
+Balanced Accuracy: 0.7737442022192926
+F1 Score: [0.71595331 0.55290102 0.61450925 0.63790447 0.95215311]
+MCC: 0.6056932113653811
+
+Training time (s): 3.5521397
+Testing time (s): 0.1319959
+
+Classifier: elm-4000_Logistic_rgb
+
+Accuracy: 0.4991379310344828
+Balanced Accuracy: 0.5842980553972339
+F1 Score: [0.5        0.30188679 0.43384615 0.50094877 0.77362637]
+MCC: 0.40341182704159284
+
+Training time (s): 5.4895841
+Testing time (s): 0.16703590000000001
+
+Classifier: elm-4000_Logistic_rgb_lbp
+
+Accuracy: 0.4353448275862069
+Balanced Accuracy: 0.5126530013019108
+F1 Score: [0.36024845 0.33136095 0.41884817 0.42965779 0.56327986]
+MCC: 0.33475111752615266
+
+Training time (s): 5.4830432
+Testing time (s): 0.16299660000000002
+
+Classifier: elm-4000_Logistic_hsv
+
+Accuracy: 0.5818965517241379
+Balanced Accuracy: 0.5455743807132551
+F1 Score: [0.40963855 0.5        0.61239368 0.5477707  0.7245509 ]
+MCC: 0.4314688508472974
+
+Training time (s): 5.4766934
+Testing time (s): 0.1570173
+
+Classifier: elm-4000_Logistic_hsv_lbp
+
+Accuracy: 0.5689655172413793
+Balanced Accuracy: 0.6159467342859618
+F1 Score: [0.67357513 0.25333333 0.57023644 0.52575488 0.93670886]
+MCC: 0.4764738679448489
+
+Training time (s): 6.3675334
+Testing time (s): 0.2620014
+
+Classifier: elm-4000_Logistic_cielab
+
+Accuracy: 0.6603448275862069
+Balanced Accuracy: 0.7595247831006791
+F1 Score: [0.82251082 0.5083612  0.50295858 0.64460432 0.95942721]
+MCC: 0.5743171547391585
+
+Training time (s): 6.870999200000001
+Testing time (s): 0.19899750000000002
+
+Classifier: elm-4000_Logistic_cielab_lbp
+
+Accuracy: 0.5129310344827587
+Balanced Accuracy: 0.6071448565002064
+F1 Score: [0.43916914 0.28985507 0.40766551 0.5229202  0.93596059]
+MCC: 0.43598247225696646
+
+Training time (s): 7.9319984
+Testing time (s): 0.2730018
+
+Classifier: elm-5000_Logistic_rgb
+
+Accuracy: 0.39482758620689656
+Balanced Accuracy: 0.457282802096858
+F1 Score: [0.36440678 0.41106719 0.38360176 0.28968254 0.49378882]
+MCC: 0.2472480092572009
+
+Training time (s): 11.349999500000001
+Testing time (s): 0.2719993
+
+Classifier: elm-5000_Logistic_rgb_lbp
+
+Accuracy: 0.5612068965517242
+Balanced Accuracy: 0.6526902277949171
+F1 Score: [0.55319149 0.57627119 0.41574803 0.52965517 0.81900452]
+MCC: 0.4486121107810986
+
+Training time (s): 8.8113577
+Testing time (s): 0.2270058
+
+Classifier: elm-5000_Logistic_hsv
+
+Accuracy: 0.5543103448275862
+Balanced Accuracy: 0.6004607427083416
+F1 Score: [0.59803922 0.30971129 0.52853598 0.51792829 0.84309133]
+MCC: 0.44061491008293213
+
+Training time (s): 8.108470200000001
+Testing time (s): 0.19595700000000002
+
+Classifier: elm-5000_Logistic_hsv_lbp
+
+Accuracy: 0.25862068965517243
+Balanced Accuracy: 0.2729969711532839
+F1 Score: [0.18270799 0.17699115 0.10278373 0.42684268 0.14678899]
+MCC: 0.0935903762371252
+
+Training time (s): 8.119090400000001
+Testing time (s): 0.23161790000000002
+
+Classifier: elm-5000_Logistic_cielab
+
+Accuracy: 0.5094827586206897
+Balanced Accuracy: 0.553515321664481
+F1 Score: [0.68421053 0.28776978 0.40654206 0.41666667 0.94444444]
+MCC: 0.3476325133953258
+
+Training time (s): 7.9793107
+Testing time (s): 0.20404280000000002
+
+Classifier: elm-5000_Logistic_cielab_lbp
+
+Accuracy: 0.6646551724137931
+Balanced Accuracy: 0.7527539132147403
+F1 Score: [0.6090535  0.57051282 0.54931715 0.66568483 0.94145199]
+MCC: 0.5863957508956672
+
+Training time (s): 8.262014200000001
+Testing time (s): 0.22588840000000002
+
+Classifier: elm-6000_Logistic_rgb
+
+Accuracy: 0.4517241379310345
+Balanced Accuracy: 0.531059397895692
+F1 Score: [0.45333333 0.42172524 0.36190476 0.43577236 0.59217877]
+MCC: 0.320172177894715
+
+Training time (s): 11.978700900000002
+Testing time (s): 0.2449126
+
+Classifier: elm-6000_Logistic_rgb_lbp
+
+Accuracy: 0.45517241379310347
+Balanced Accuracy: 0.5381873695967239
+F1 Score: [0.62686567 0.40243902 0.40106952 0.41074856 0.5440613 ]
+MCC: 0.31163635002129636
+
+Training time (s): 11.2537152
+Testing time (s): 0.2729994
+
+Classifier: elm-6000_Logistic_hsv
+
+Accuracy: 0.6517241379310345
+Balanced Accuracy: 0.7455657898619081
+F1 Score: [0.74766355 0.52567976 0.56338028 0.58551618 0.95673077]
+MCC: 0.5620621842830218
+
+Training time (s): 11.2580477
+Testing time (s): 0.2390025
+
+Classifier: elm-6000_Logistic_hsv_lbp
+
+Accuracy: 0.6586206896551724
+Balanced Accuracy: 0.738775238661415
+F1 Score: [0.78301887 0.51655629 0.58100559 0.59104478 0.93809524]
+MCC: 0.565301975677813
+
+Training time (s): 11.101840300000001
+Testing time (s): 0.2579511
+
+Classifier: elm-6000_Logistic_cielab
+
+Accuracy: 0.6129310344827587
+Balanced Accuracy: 0.6836589325441919
+F1 Score: [0.78378378 0.3264095  0.46657572 0.64484452 0.96402878]
+MCC: 0.5113370352329113
+
+Training time (s): 10.8277894
+Testing time (s): 0.24186000000000002
+
+Classifier: elm-6000_Logistic_cielab_lbp
+
+Accuracy: 0.6146551724137931
+Balanced Accuracy: 0.6987246602226713
+F1 Score: [0.55506608 0.43890274 0.54545455 0.60060976 0.95979899]
+MCC: 0.5374799675149878
+
+Training time (s): 11.0861114
+Testing time (s): 0.2737043
+
+Classifier: elm-7000_Logistic_rgb
+
+Accuracy: 0.5094827586206897
+Balanced Accuracy: 0.5999220045333288
+F1 Score: [0.62650602 0.30898876 0.42424242 0.46181818 0.75643564]
+MCC: 0.40267072197286286
+
+Training time (s): 15.277624500000002
+Testing time (s): 0.2740035
+
+Classifier: elm-7000_Logistic_rgb_lbp
+
+Accuracy: 0.10862068965517241
+Balanced Accuracy: 0.19372320197535572
+F1 Score: [0.18064516 0.07703704 0.0877193  0.05142857 0.1369863 ]
+MCC: 0.020172446263067276
+
+Training time (s): 15.4699381
+Testing time (s): 0.31537220000000005
+
+Classifier: elm-7000_Logistic_hsv
+
+Accuracy: 0.36982758620689654
+Balanced Accuracy: 0.3966148259788086
+F1 Score: [0.30894309 0.21338156 0.2244489  0.5        0.56140351]
+MCC: 0.24990271612538745
+
+Training time (s): 14.834203
+Testing time (s): 0.30402440000000003
+
+Classifier: elm-7000_Logistic_hsv_lbp
+
+Accuracy: 0.4387931034482759
+Balanced Accuracy: 0.3896917008103909
+F1 Score: [0.296875   0.30769231 0.55306122 0.27067669 0.43167702]
+MCC: 0.25771192221791406
+
+Training time (s): 14.7643239
+Testing time (s): 0.2917921
+
+Classifier: elm-7000_Logistic_cielab
+
+Accuracy: 0.6267241379310344
+Balanced Accuracy: 0.7213679607749053
+F1 Score: [0.7016129  0.47468354 0.52380952 0.58552632 0.92165899]
+MCC: 0.532304945622087
+
+Training time (s): 14.108201900000001
+Testing time (s): 0.2740021
+
+Classifier: elm-7000_Logistic_cielab_lbp
+
+Accuracy: 0.6146551724137931
+Balanced Accuracy: 0.6981994561404318
+F1 Score: [0.8034188  0.46779661 0.52459016 0.57666667 0.84924623]
+MCC: 0.5011348662790434
+
+Training time (s): 14.121915300000001
+Testing time (s): 0.2890296
+
+Classifier: elm-8000_Logistic_rgb
+
+Accuracy: 0.5008620689655172
+Balanced Accuracy: 0.6034707241131942
+F1 Score: [0.49802372 0.36591479 0.36633663 0.48595041 0.81838074]
+MCC: 0.40153155742972396
+
+Training time (s): 18.3166151
+Testing time (s): 0.3308436
+
+Classifier: elm-8000_Logistic_rgb_lbp
+
+Accuracy: 0.4698275862068966
+Balanced Accuracy: 0.5189438101112145
+F1 Score: [0.57446809 0.3375     0.44702467 0.46757679 0.54376164]
+MCC: 0.33315817784694535
+
+Training time (s): 18.3065432
+Testing time (s): 0.34949250000000004
+
+Classifier: elm-8000_Logistic_hsv
+
+Accuracy: 0.5275862068965518
+Balanced Accuracy: 0.5938154400020504
+F1 Score: [0.7184466  0.25592417 0.46585366 0.4742268  0.91989664]
+MCC: 0.41160979026679956
+
+Training time (s): 18.1181759
+Testing time (s): 0.3148731
+
+Classifier: elm-8000_Logistic_hsv_lbp
+
+Accuracy: 0.603448275862069
+Balanced Accuracy: 0.6799989346516389
+F1 Score: [0.73636364 0.46979866 0.56681351 0.60338983 0.67043315]
+MCC: 0.5098147726229598
+
+Training time (s): 18.4085962
+Testing time (s): 0.3437642
+
+Classifier: elm-8000_Logistic_cielab
+
+Accuracy: 0.375
+Balanced Accuracy: 0.3761512759725987
+F1 Score: [0.3015873  0.17465753 0.49115044 0.19796954 0.66666667]
+MCC: 0.22768540247170727
+
+Training time (s): 18.513232000000002
+Testing time (s): 0.32398930000000004
+
+Classifier: elm-8000_Logistic_cielab_lbp
+
+Accuracy: 0.6629310344827586
+Balanced Accuracy: 0.7237943537148188
+F1 Score: [0.57142857 0.52941176 0.58737151 0.64469914 0.97270471]
+MCC: 0.5761569855643407
+
+Training time (s): 18.2680805
+Testing time (s): 0.3705892
+
+Classifier: elm-9000_Logistic_rgb
+
+Accuracy: 0.23620689655172414
+Balanced Accuracy: 0.2533692641466975
+F1 Score: [0.22641509 0.14492754 0.24015009 0.32394366 0.20058997]
+MCC: 0.0653625793250256
+
+Training time (s): 22.992131800000003
+Testing time (s): 0.37181220000000004
+
+Classifier: elm-9000_Logistic_rgb_lbp
+
+Accuracy: 0.2637931034482759
+Balanced Accuracy: 0.31532554088192866
+F1 Score: [0.15217391 0.30088496 0.11206897 0.34134008 0.48083624]
+MCC: 0.11631447496839875
+
+Training time (s): 23.1529713
+Testing time (s): 0.3787302
+
+Classifier: elm-9000_Logistic_hsv
+
+Accuracy: 0.6077586206896551
+Balanced Accuracy: 0.6924293543455342
+F1 Score: [0.75829384 0.55555556 0.48101266 0.53913043 0.86842105]
+MCC: 0.4934813601237582
+
+Training time (s): 23.215569700000003
+Testing time (s): 0.35631060000000003
+
+Classifier: elm-9000_Logistic_hsv_lbp
+
+Accuracy: 0.646551724137931
+Balanced Accuracy: 0.7140642722519399
+F1 Score: [0.74178404 0.50825083 0.592686   0.57843137 0.9122807 ]
+MCC: 0.541873144530584
+
+Training time (s): 23.661607
+Testing time (s): 0.3742536
+
+Classifier: elm-9000_Logistic_cielab
+
+Accuracy: 0.46379310344827585
+Balanced Accuracy: 0.5310942569104565
+F1 Score: [0.53080569 0.24581006 0.48115942 0.41791045 0.79768786]
+MCC: 0.36285434269590955
+
+Training time (s): 22.329014100000002
+Testing time (s): 0.35100010000000004
+
+Classifier: elm-9000_Logistic_cielab_lbp
+
+Accuracy: 0.625
+Balanced Accuracy: 0.7139949895653792
+F1 Score: [0.7219917  0.55970149 0.55068493 0.52503794 0.8957346 ]
+MCC: 0.5174826495358662
+
+Training time (s): 22.369229200000003
+Testing time (s): 0.41492110000000004
+
+Classifier: elm-10000_Logistic_rgb
+
+Accuracy: 0.39482758620689656
+Balanced Accuracy: 0.25607549890664
+F1 Score: [0.08333333 0.         0.48809524 0.43069874 0.17117117]
+MCC: 0.11464828921559847
+
+Training time (s): 28.3206689
+Testing time (s): 0.41581130000000005
+
+Classifier: elm-10000_Logistic_rgb_lbp
+
+Accuracy: 0.5163793103448275
+Balanced Accuracy: 0.5919860943349752
+F1 Score: [0.47698745 0.37790698 0.43       0.48484848 0.78825996]
+MCC: 0.41026000026399
+
+Training time (s): 28.337579400000003
+Testing time (s): 0.4620753
+
+Classifier: elm-10000_Logistic_hsv
+
+Accuracy: 0.44482758620689655
+Balanced Accuracy: 0.5261952868891269
+F1 Score: [0.51476793 0.29305913 0.27173913 0.44670051 0.83050847]
+MCC: 0.32315351862395547
+
+Training time (s): 28.0361434
+Testing time (s): 0.4120435
+
+Classifier: elm-10000_Logistic_hsv_lbp
+
+Accuracy: 0.39482758620689656
+Balanced Accuracy: 0.40153037831200467
+F1 Score: [0.26136364 0.35146444 0.42995839 0.42609854 0.42801556]
+MCC: 0.2168109041523784
+
+Training time (s): 28.5823044
+Testing time (s): 0.4316167
+
+Classifier: elm-10000_Logistic_cielab
+
+Accuracy: 0.6275862068965518
+Balanced Accuracy: 0.6896726735211475
+F1 Score: [0.78095238 0.43165468 0.53585927 0.55604076 0.97044335]
+MCC: 0.5166571810279185
+
+Training time (s): 27.652191700000003
+Testing time (s): 0.43199770000000004
+
+Classifier: elm-10000_Logistic_cielab_lbp
+
+Accuracy: 0.6103448275862069
+Balanced Accuracy: 0.666443759032786
+F1 Score: [0.67906977 0.4025974  0.50125313 0.60535117 0.95760599]
+MCC: 0.4952170207785249
+
+Training time (s): 28.198813
+Testing time (s): 0.4589996
+
+Classifier: elm-1000_Swish_rgb
+
+Accuracy: 0.8094827586206896
+Balanced Accuracy: 0.8682952913544731
+F1 Score: [0.89189189 0.67924528 0.79845956 0.79483037 0.88735632]
+MCC: 0.7557995766419143
+
+Training time (s): 0.7169975000000001
+Testing time (s): 0.047004000000000004
+
+Classifier: elm-1000_Swish_rgb_lbp
+
+Accuracy: 0.9405172413793104
+Balanced Accuracy: 0.9632496257712371
+F1 Score: [0.98550725 0.89099526 0.92606061 0.92857143 0.99259259]
+MCC: 0.9206312665772923
+
+Training time (s): 0.7519949
+Testing time (s): 0.045001900000000004
+
+Classifier: elm-1000_Swish_hsv
+
+Accuracy: 0.646551724137931
+Balanced Accuracy: 0.7079645608584789
+F1 Score: [0.82222222 0.43010753 0.59949622 0.66189624 0.83373494]
+MCC: 0.5549255320340859
+
+Training time (s): 0.6990063000000001
+Testing time (s): 0.0419924
+
+Classifier: elm-1000_Swish_hsv_lbp
+
+Accuracy: 0.9551724137931035
+Balanced Accuracy: 0.9729427802439792
+F1 Score: [1.         0.91707317 0.9451074  0.9387145  1.        ]
+MCC: 0.9397551273464894
+
+Training time (s): 0.8610363000000001
+Testing time (s): 0.051992100000000006
+
+Classifier: elm-1000_Swish_cielab
+
+Accuracy: 0.7637931034482759
+Balanced Accuracy: 0.8258280685968529
+F1 Score: [0.86829268 0.67424242 0.70588235 0.7032967  0.98492462]
+MCC: 0.6889341055733929
+
+Training time (s): 0.7190577
+Testing time (s): 0.0430012
+
+Classifier: elm-1000_Swish_cielab_lbp
+
+Accuracy: 0.8931034482758621
+Balanced Accuracy: 0.9216848932478413
+F1 Score: [0.9        0.75105485 0.88751545 0.88751926 0.99259259]
+MCC: 0.8599771809271529
+
+Training time (s): 0.7730048
+Testing time (s): 0.04499
+
+Classifier: elm-2000_Swish_rgb
+
+Accuracy: 0.7948275862068965
+Balanced Accuracy: 0.8586032798736355
+F1 Score: [0.88495575 0.67424242 0.78967742 0.77227723 0.8596882 ]
+MCC: 0.7383525938762808
+
+Training time (s): 1.8320317000000002
+Testing time (s): 0.0840032
+
+Classifier: elm-2000_Swish_rgb_lbp
+
+Accuracy: 0.9413793103448276
+Balanced Accuracy: 0.9620587343466518
+F1 Score: [0.98550725 0.89423077 0.92641737 0.92857143 0.9950495 ]
+MCC: 0.9215271180544933
+
+Training time (s): 1.8600002000000002
+Testing time (s): 0.0910011
+
+Classifier: elm-2000_Swish_hsv
+
+Accuracy: 0.8931034482758621
+Balanced Accuracy: 0.9287420771424613
+F1 Score: [0.93023256 0.77178423 0.86829268 0.9        0.98514851]
+MCC: 0.8597207598132005
+
+Training time (s): 1.8669931000000002
+Testing time (s): 0.09500170000000001
+
+Classifier: elm-2000_Swish_hsv_lbp
+
+Accuracy: 0.9560344827586207
+Balanced Accuracy: 0.9739256877206474
+F1 Score: [0.99516908 0.93532338 0.94244604 0.94222222 0.99751861]
+MCC: 0.9409279486256014
+
+Training time (s): 1.8703979000000002
+Testing time (s): 0.1080324
+
+Classifier: elm-2000_Swish_cielab
+
+Accuracy: 0.821551724137931
+Balanced Accuracy: 0.8710687486236534
+F1 Score: [0.84304933 0.69803922 0.78848561 0.7925117  1.        ]
+MCC: 0.7671672018014418
+
+Training time (s): 1.8758294000000002
+Testing time (s): 0.08400310000000001
+
+Classifier: elm-2000_Swish_cielab_lbp
+
+Accuracy: 0.5637931034482758
+Balanced Accuracy: 0.5718223175785703
+F1 Score: [0.72727273 0.22172949 0.54823529 0.67698259 0.80712166]
+MCC: 0.455475198168252
+
+Training time (s): 1.863442
+Testing time (s): 0.0880113
+
+Classifier: elm-3000_Swish_rgb
+
+Accuracy: 0.7810344827586206
+Balanced Accuracy: 0.8500580159248544
+F1 Score: [0.87610619 0.6641791  0.77142857 0.75250836 0.8558952 ]
+MCC: 0.7220808640625368
+
+Training time (s): 3.4175005
+Testing time (s): 0.12404960000000001
+
+Classifier: elm-3000_Swish_rgb_lbp
+
+Accuracy: 0.9396551724137931
+Balanced Accuracy: 0.9611219661967689
+F1 Score: [0.98550725 0.88995215 0.92382104 0.92719168 0.9950495 ]
+MCC: 0.9193088763723258
+
+Training time (s): 3.3246848
+Testing time (s): 0.1280357
+
+Classifier: elm-3000_Swish_hsv
+
+Accuracy: 0.9146551724137931
+Balanced Accuracy: 0.9439500897674649
+F1 Score: [0.98076923 0.84792627 0.88915663 0.8959276  1.        ]
+MCC: 0.8859446603744787
+
+Training time (s): 3.3304391
+Testing time (s): 0.1190023
+
+Classifier: elm-3000_Swish_hsv_lbp
+
+Accuracy: 0.9568965517241379
+Balanced Accuracy: 0.9743940717955889
+F1 Score: [1.         0.92610837 0.94371257 0.94362018 1.        ]
+MCC: 0.9420966727974018
+
+Training time (s): 3.3430348000000003
+Testing time (s): 0.140992
+
+Classifier: elm-3000_Swish_cielab
+
+Accuracy: 0.7362068965517241
+Balanced Accuracy: 0.7949804920596757
+F1 Score: [0.71052632 0.55974843 0.7191601  0.71175523 0.96675192]
+MCC: 0.6663241790907172
+
+Training time (s): 3.3766156
+Testing time (s): 0.12099910000000001
+
+Classifier: elm-3000_Swish_cielab_lbp
+
+Accuracy: 0.7008620689655173
+Balanced Accuracy: 0.7324048651964278
+F1 Score: [0.58333333 0.49315068 0.74137931 0.68383405 0.90514905]
+MCC: 0.6254862560354708
+
+Training time (s): 3.5416873000000004
+Testing time (s): 0.21699800000000002
+
+Classifier: elm-4000_Swish_rgb
+
+Accuracy: 0.7758620689655172
+Balanced Accuracy: 0.845202543424384
+F1 Score: [0.8722467  0.65185185 0.76723017 0.74747475 0.85217391]
+MCC: 0.7160325510099763
+
+Training time (s): 5.518886
+Testing time (s): 0.1690077
+
+Classifier: elm-4000_Swish_rgb_lbp
+
+Accuracy: 0.9387931034482758
+Balanced Accuracy: 0.9606535821218275
+F1 Score: [0.98550725 0.88995215 0.92251816 0.92719168 0.99259259]
+MCC: 0.9181947339870664
+
+Training time (s): 5.48949
+Testing time (s): 0.1859962
+
+Classifier: elm-4000_Swish_hsv
+
+Accuracy: 0.8905172413793103
+Balanced Accuracy: 0.9287188179190717
+F1 Score: [0.98058252 0.76666667 0.85362854 0.8861912  1.        ]
+MCC: 0.8557743696371725
+
+Training time (s): 5.2882394
+Testing time (s): 0.1620289
+
+Classifier: elm-4000_Swish_hsv_lbp
+
+Accuracy: 0.9551724137931035
+Balanced Accuracy: 0.9719839401478317
+F1 Score: [0.98076923 0.92156863 0.94019139 0.95067265 0.99751861]
+MCC: 0.9398093995424536
+
+Training time (s): 5.1783615
+Testing time (s): 0.180089
+
+Classifier: elm-4000_Swish_cielab
+
+Accuracy: 0.6189655172413793
+Balanced Accuracy: 0.6918194009635987
+F1 Score: [0.53046595 0.41038961 0.54200542 0.716141   0.90765172]
+MCC: 0.5370643333591012
+
+Training time (s): 5.3899998
+Testing time (s): 0.1589998
+
+Classifier: elm-4000_Swish_cielab_lbp
+
+Accuracy: 0.9086206896551724
+Balanced Accuracy: 0.9295305299503749
+F1 Score: [0.97115385 0.77333333 0.89473684 0.93333333 0.93719807]
+MCC: 0.8800623387421077
+
+Training time (s): 5.3234465
+Testing time (s): 0.1720028
+
+Classifier: elm-5000_Swish_rgb
+
+Accuracy: 0.775
+Balanced Accuracy: 0.8460788919968849
+F1 Score: [0.87336245 0.64944649 0.76662321 0.74662162 0.85032538]
+MCC: 0.7155486852467
+
+Training time (s): 7.291039100000001
+Testing time (s): 0.19999550000000002
+
+Classifier: elm-5000_Swish_rgb_lbp
+
+Accuracy: 0.9387931034482758
+Balanced Accuracy: 0.9606535821218275
+F1 Score: [0.98550725 0.88995215 0.92251816 0.92719168 0.99259259]
+MCC: 0.9181947339870664
+
+Training time (s): 7.421848700000001
+Testing time (s): 0.2286632
+
+Classifier: elm-5000_Swish_hsv
+
+Accuracy: 0.8922413793103449
+Balanced Accuracy: 0.929984197469029
+F1 Score: [0.97607656 0.78448276 0.85501859 0.88622754 0.9950495 ]
+MCC: 0.8578746033620902
+
+Training time (s): 7.3071482
+Testing time (s): 0.20396650000000002
+
+Classifier: elm-5000_Swish_hsv_lbp
+
+Accuracy: 0.9551724137931035
+Balanced Accuracy: 0.9733286727952741
+F1 Score: [1.         0.91707317 0.94131737 0.94485842 0.99751861]
+MCC: 0.9398317147579232
+
+Training time (s): 7.434153
+Testing time (s): 0.2189983
+
+Classifier: elm-5000_Swish_cielab
+
+Accuracy: 0.7336206896551725
+Balanced Accuracy: 0.7878267609938968
+F1 Score: [0.63396226 0.51633987 0.69623656 0.7615894  0.9925187 ]
+MCC: 0.6676611134651236
+
+Training time (s): 7.490363800000001
+Testing time (s): 0.2047305
+
+Classifier: elm-5000_Swish_cielab_lbp
+
+Accuracy: 0.9387931034482758
+Balanced Accuracy: 0.9549028275287528
+F1 Score: [0.98039216 0.85046729 0.91917973 0.94328358 0.99751861]
+MCC: 0.9182199058634661
+
+Training time (s): 7.583934800000001
+Testing time (s): 0.2356724
+
+Classifier: elm-6000_Swish_rgb
+
+Accuracy: 0.775
+Balanced Accuracy: 0.8460788919968849
+F1 Score: [0.87336245 0.64705882 0.76662321 0.74662162 0.85217391]
+MCC: 0.7155976836659708
+
+Training time (s): 9.9527487
+Testing time (s): 0.2417507
+
+Classifier: elm-6000_Swish_rgb_lbp
+
+Accuracy: 0.9387931034482758
+Balanced Accuracy: 0.9606535821218275
+F1 Score: [0.98550725 0.88995215 0.92251816 0.92719168 0.99259259]
+MCC: 0.9181947339870664
+
+Training time (s): 10.396511100000001
+Testing time (s): 0.2500008
+
+Classifier: elm-6000_Swish_hsv
+
+Accuracy: 0.9137931034482759
+Balanced Accuracy: 0.9459127662946403
+F1 Score: [0.97607656 0.81578947 0.88480392 0.91402715 0.9950495 ]
+MCC: 0.8860494591818713
+
+Training time (s): 10.0185258
+Testing time (s): 0.24900370000000002
+
+Classifier: elm-6000_Swish_hsv_lbp
+
+Accuracy: 0.9525862068965517
+Balanced Accuracy: 0.971794889720018
+F1 Score: [1.         0.91262136 0.93764988 0.94187779 0.99751861]
+MCC: 0.9363982888943233
+
+Training time (s): 10.156276700000001
+Testing time (s): 0.2659994
+
+Classifier: elm-6000_Swish_cielab
+
+Accuracy: 0.7939655172413793
+Balanced Accuracy: 0.8538976360662607
+F1 Score: [0.90740741 0.57239057 0.7394095  0.80063796 0.9925187 ]
+MCC: 0.7371490832684785
+
+Training time (s): 10.260814100000001
+Testing time (s): 0.2519671
+
+Classifier: elm-6000_Swish_cielab_lbp
+
+Accuracy: 0.7362068965517241
+Balanced Accuracy: 0.7670126958770487
+F1 Score: [0.86187845 0.40650407 0.70290771 0.80607083 0.95336788]
+MCC: 0.6705309622095786
+
+Training time (s): 10.5492267
+Testing time (s): 0.27395980000000003
+
+Classifier: elm-7000_Swish_rgb
+
+Accuracy: 0.7672413793103449
+Balanced Accuracy: 0.8383449037737162
+F1 Score: [0.86462882 0.63736264 0.75816993 0.73898305 0.84665227]
+MCC: 0.7060169702866158
+
+Training time (s): 13.834099700000001
+Testing time (s): 0.2794324
+
+Classifier: elm-7000_Swish_rgb_lbp
+
+Accuracy: 0.9387931034482758
+Balanced Accuracy: 0.9606535821218275
+F1 Score: [0.98550725 0.88995215 0.92251816 0.92719168 0.99259259]
+MCC: 0.9181947339870664
+
+Training time (s): 14.1543206
+Testing time (s): 0.3170374
+
+Classifier: elm-7000_Swish_hsv
+
+Accuracy: 0.906896551724138
+Balanced Accuracy: 0.9405064181955819
+F1 Score: [0.97607656 0.7965368  0.87623762 0.90718563 0.9950495 ]
+MCC: 0.8773760497826772
+
+Training time (s): 13.711370500000001
+Testing time (s): 0.3129978
+
+Classifier: elm-7000_Swish_hsv_lbp
+
+Accuracy: 0.9525862068965517
+Balanced Accuracy: 0.971794889720018
+F1 Score: [1.         0.91262136 0.93764988 0.94187779 0.99751861]
+MCC: 0.9363982888943233
+
+Training time (s): 14.301085
+Testing time (s): 0.30618320000000004
+
+Classifier: elm-7000_Swish_cielab
+
+Accuracy: 0.8413793103448276
+Balanced Accuracy: 0.8931136320937993
+F1 Score: [0.89686099 0.692607   0.78680203 0.85362096 0.99255583]
+MCC: 0.7943559683971977
+
+Training time (s): 14.2820298
+Testing time (s): 0.2945608
+
+Classifier: elm-7000_Swish_cielab_lbp
+
+Accuracy: 0.9224137931034483
+Balanced Accuracy: 0.9479212102971599
+F1 Score: [0.99029126 0.77118644 0.91089109 0.92215569 1.        ]
+MCC: 0.8983810956168103
+
+Training time (s): 14.035803600000001
+Testing time (s): 0.2979975
+
+Classifier: elm-8000_Swish_rgb
+
+Accuracy: 0.7629310344827587
+Balanced Accuracy: 0.8344009890507031
+F1 Score: [0.8558952  0.6350365  0.75229358 0.73559322 0.84482759]
+MCC: 0.7007242174779753
+
+Training time (s): 17.699742500000003
+Testing time (s): 0.3530456
+
+Classifier: elm-8000_Swish_rgb_lbp
+
+Accuracy: 0.9387931034482758
+Balanced Accuracy: 0.9606535821218275
+F1 Score: [0.98550725 0.88995215 0.92251816 0.92719168 0.99259259]
+MCC: 0.9181947339870664
+
+Training time (s): 17.8970218
+Testing time (s): 0.35017410000000004
+
+Classifier: elm-8000_Swish_hsv
+
+Accuracy: 0.9025862068965518
+Balanced Accuracy: 0.9379072361200113
+F1 Score: [0.97607656 0.78632479 0.86988848 0.90526316 0.99259259]
+MCC: 0.8719005812741529
+
+Training time (s): 17.6535644
+Testing time (s): 0.32651630000000004
+
+Classifier: elm-8000_Swish_hsv_lbp
+
+Accuracy: 0.9525862068965517
+Balanced Accuracy: 0.971794889720018
+F1 Score: [1.         0.91262136 0.93764988 0.94187779 0.99751861]
+MCC: 0.9363982888943233
+
+Training time (s): 17.659800800000003
+Testing time (s): 0.35203460000000003
+
+Classifier: elm-8000_Swish_cielab
+
+Accuracy: 0.8689655172413793
+Balanced Accuracy: 0.9078135655867854
+F1 Score: [0.93636364 0.70781893 0.84482759 0.85536547 1.        ]
+MCC: 0.8281596000282501
+
+Training time (s): 18.218601200000002
+Testing time (s): 0.33047590000000004
+
+Classifier: elm-8000_Swish_cielab_lbp
+
+Accuracy: 0.8293103448275863
+Balanced Accuracy: 0.8582669066704172
+F1 Score: [0.57731959 0.87254902 0.85490196 0.81024096 0.97474747]
+MCC: 0.7814173609439874
+
+Training time (s): 20.0520257
+Testing time (s): 0.3559562
+
+Classifier: elm-9000_Swish_rgb
+
+Accuracy: 0.7612068965517241
+Balanced Accuracy: 0.8333355900503886
+F1 Score: [0.8558952  0.6350365  0.74967235 0.73344652 0.84301075]
+MCC: 0.6985876762232568
+
+Training time (s): 22.0138131
+Testing time (s): 0.48530520000000005
+
+Classifier: elm-9000_Swish_rgb_lbp
+
+Accuracy: 0.9379310344827586
+Balanced Accuracy: 0.9601851980468862
+F1 Score: [0.98550725 0.88571429 0.92121212 0.92719168 0.99259259]
+MCC: 0.9171089267663468
+
+Training time (s): 23.212537
+Testing time (s): 0.44152210000000003
+
+Classifier: elm-9000_Swish_hsv
+
+Accuracy: 0.9051724137931034
+Balanced Accuracy: 0.9394410191952675
+F1 Score: [0.97607656 0.78297872 0.87484511 0.90827068 0.9950495 ]
+MCC: 0.8754141614624812
+
+Training time (s): 24.1403697
+Testing time (s): 0.3896929
+
+Classifier: elm-9000_Swish_hsv_lbp
+
+Accuracy: 0.9525862068965517
+Balanced Accuracy: 0.971794889720018
+F1 Score: [1.         0.91262136 0.93764988 0.94187779 0.99751861]
+MCC: 0.9363982888943233
+
+Training time (s): 22.447435600000002
+Testing time (s): 0.43668880000000004
+
+Classifier: elm-9000_Swish_cielab
+
+Accuracy: 0.22844827586206898
+Balanced Accuracy: 0.2583349642930075
+F1 Score: [0.20512821 0.15361446 0.09799555 0.3644752  0.19730942]
+MCC: 0.07062348429952055
+
+Training time (s): 22.192784900000003
+Testing time (s): 0.41495960000000004
+
+Classifier: elm-9000_Swish_cielab_lbp
+
+Accuracy: 0.9362068965517242
+Balanced Accuracy: 0.9630242231465622
+F1 Score: [0.99516908 0.85844749 0.91491985 0.93235294 0.99751861]
+MCC: 0.9157942783519805
+
+Training time (s): 23.0051115
+Testing time (s): 0.4109935
+
+Classifier: elm-10000_Swish_rgb
+
+Accuracy: 0.7603448275862069
+Balanced Accuracy: 0.8327385751250155
+F1 Score: [0.8558952  0.6350365  0.7486911  0.73129252 0.84301075]
+MCC: 0.6974156836492865
+
+Training time (s): 27.655167400000003
+Testing time (s): 0.47595610000000005
+
+Classifier: elm-10000_Swish_rgb_lbp
+
+Accuracy: 0.9379310344827586
+Balanced Accuracy: 0.9601851980468862
+F1 Score: [0.98550725 0.88571429 0.92121212 0.92719168 0.99259259]
+MCC: 0.9171089267663468
+
+Training time (s): 27.4823196
+Testing time (s): 0.5017845000000001
+
+Classifier: elm-10000_Swish_hsv
+
+Accuracy: 0.9
+Balanced Accuracy: 0.9366307147456187
+F1 Score: [0.97142857 0.77310924 0.86641698 0.90690691 0.99259259]
+MCC: 0.869107374162483
+
+Training time (s): 27.0759216
+Testing time (s): 0.4229682
+
+Classifier: elm-10000_Swish_hsv_lbp
+
+Accuracy: 0.9517241379310345
+Balanced Accuracy: 0.9713265056450767
+F1 Score: [1.         0.90821256 0.93637455 0.94187779 0.99751861]
+MCC: 0.9352948223453129
+
+Training time (s): 28.1265706
+Testing time (s): 0.44037410000000005
+
+Classifier: elm-10000_Swish_cielab
+
+Accuracy: 0.7948275862068965
+Balanced Accuracy: 0.8502836874378332
+F1 Score: [0.95098039 0.6614786  0.72793229 0.7826087  0.95377129]
+MCC: 0.7299079826134915
+
+Training time (s): 27.620607600000003
+Testing time (s): 0.42799990000000004
+
+Classifier: elm-10000_Swish_cielab_lbp
+
+Accuracy: 0.878448275862069
+Balanced Accuracy: 0.906245893439358
+F1 Score: [0.66181818 0.92462312 0.8660826  0.90092879 0.9925187 ]
+MCC: 0.8424985191489015
+
+Training time (s): 27.6881427
+Testing time (s): 0.4743852
+
+Classifier: elm-1000_Leaky ReLU_rgb
+
+Accuracy: 0.9629310344827586
+Balanced Accuracy: 0.9708094918254864
+F1 Score: [0.98522167 0.93467337 0.95887192 0.95037594 0.99502488]
+MCC: 0.9498707987176166
+
+Training time (s): 0.5494011000000001
+Testing time (s): 0.0199929
+
+Classifier: elm-1000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9775862068965517
+Balanced Accuracy: 0.9853196037501947
+F1 Score: [0.99512195 0.96907216 0.97502973 0.96460177 1.        ]
+MCC: 0.969780342832742
+
+Training time (s): 0.5735938
+Testing time (s): 0.0200081
+
+Classifier: elm-1000_Leaky ReLU_hsv
+
+Accuracy: 0.9836206896551725
+Balanced Accuracy: 0.9903289174735223
+F1 Score: [1.         1.         0.97756789 0.97193501 1.        ]
+MCC: 0.9778272470819015
+
+Training time (s): 0.5279844
+Testing time (s): 0.0199712
+
+Classifier: elm-1000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.9870689655172413
+Balanced Accuracy: 0.9924597154741516
+F1 Score: [1.         1.         0.98229044 0.97784343 1.        ]
+MCC: 0.9825056340822231
+
+Training time (s): 0.568238
+Testing time (s): 0.0279568
+
+Classifier: elm-1000_Leaky ReLU_cielab
+
+Accuracy: 0.9844827586206897
+Balanced Accuracy: 0.9894525689010214
+F1 Score: [0.99029126 1.         0.97992916 0.97488922 1.        ]
+MCC: 0.9789968438319819
+
+Training time (s): 0.5712838
+Testing time (s): 0.0199584
+
+Classifier: elm-1000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.9836206896551725
+Balanced Accuracy: 0.9888555539756482
+F1 Score: [0.99029126 0.98429319 0.98224852 0.97337278 1.        ]
+MCC: 0.9778622190844538
+
+Training time (s): 0.5795344
+Testing time (s): 0.0240058
+
+Classifier: elm-2000_Leaky ReLU_rgb
+
+Accuracy: 0.9655172413793104
+Balanced Accuracy: 0.9697232081560321
+F1 Score: [0.95566502 0.96410256 0.96503497 0.95007564 0.99751861]
+MCC: 0.9532989624280996
+
+Training time (s): 1.4276632
+Testing time (s): 0.036005
+
+Classifier: elm-2000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9818965517241379
+Balanced Accuracy: 0.9895207801740711
+F1 Score: [1.         0.98429319 0.97624703 0.97201767 1.        ]
+MCC: 0.9755853365770033
+
+Training time (s): 1.5134564000000001
+Testing time (s): 0.0400048
+
+Classifier: elm-2000_Leaky ReLU_hsv
+
+Accuracy: 0.9827586206896551
+Balanced Accuracy: 0.9881299081998434
+F1 Score: [0.99512195 0.99470899 0.97882353 0.97032641 1.        ]
+MCC: 0.9766197343818148
+
+Training time (s): 1.4001066
+Testing time (s): 0.0440042
+
+Classifier: elm-2000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.9844827586206897
+Balanced Accuracy: 0.9907973015484638
+F1 Score: [1.         0.98947368 0.98108747 0.97337278 1.        ]
+MCC: 0.9790124516871324
+
+Training time (s): 1.5290863000000001
+Testing time (s): 0.044001000000000005
+
+Classifier: elm-2000_Leaky ReLU_cielab
+
+Accuracy: 0.95
+Balanced Accuracy: 0.9645547076468232
+F1 Score: [0.98039216 0.98429319 0.93706294 0.91729323 1.        ]
+MCC: 0.9321406172539445
+
+Training time (s): 1.4560099000000002
+Testing time (s): 0.0400019
+
+Classifier: elm-2000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.9862068965517241
+Balanced Accuracy: 0.9919913313992101
+F1 Score: [0.99516908 1.         0.98108747 0.97784343 1.        ]
+MCC: 0.9813502828411411
+
+Training time (s): 1.5670383
+Testing time (s): 0.039998700000000005
+
+Classifier: elm-3000_Leaky ReLU_rgb
+
+Accuracy: 0.9370689655172414
+Balanced Accuracy: 0.9381642660936468
+F1 Score: [0.92146597 0.93069307 0.94239631 0.9093702  0.98039216]
+MCC: 0.9149861742210065
+
+Training time (s): 2.7770079
+Testing time (s): 0.052006000000000004
+
+Classifier: elm-3000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9801724137931035
+Balanced Accuracy: 0.9884553811737564
+F1 Score: [1.         0.99470899 0.97271649 0.96764706 1.        ]
+MCC: 0.973226608892113
+
+Training time (s): 2.8081068
+Testing time (s): 0.0639571
+
+Classifier: elm-3000_Leaky ReLU_hsv
+
+Accuracy: 0.9818965517241379
+Balanced Accuracy: 0.9891348876227759
+F1 Score: [1.         0.99470899 0.97526502 0.97032641 1.        ]
+MCC: 0.9754619786396596
+
+Training time (s): 2.7446233
+Testing time (s): 0.0520479
+
+Classifier: elm-3000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.9853448275862069
+Balanced Accuracy: 0.9912656856234052
+F1 Score: [1.         1.         0.97997644 0.97481481 1.        ]
+MCC: 0.9801389558816096
+
+Training time (s): 2.8800386000000002
+Testing time (s): 0.0759601
+
+Classifier: elm-3000_Leaky ReLU_cielab
+
+Accuracy: 0.7120689655172414
+Balanced Accuracy: 0.7236990268421553
+F1 Score: [0.68639053 0.90217391 0.69204927 0.59802539 0.89863014]
+MCC: 0.6037912856629617
+
+Training time (s): 2.7932137000000004
+Testing time (s): 0.0519678
+
+Classifier: elm-3000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.9517241379310345
+Balanced Accuracy: 0.9635055400461413
+F1 Score: [0.99019608 0.95833333 0.94269006 0.92215569 0.99750623]
+MCC: 0.9344936735821718
+
+Training time (s): 2.9445122
+Testing time (s): 0.06799440000000001
+
+Classifier: elm-4000_Leaky ReLU_rgb
+
+Accuracy: 0.325
+Balanced Accuracy: 0.3750015509815293
+F1 Score: [0.30894309 0.16393443 0.13449024 0.46264368 0.60162602]
+MCC: 0.2303999264983981
+
+Training time (s): 5.1998234000000005
+Testing time (s): 0.0719977
+
+Classifier: elm-4000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9310344827586207
+Balanced Accuracy: 0.9399488223148372
+F1 Score: [0.91457286 0.85844749 0.94711538 0.90254873 0.99255583]
+MCC: 0.9078333342254866
+
+Training time (s): 5.1554873
+Testing time (s): 0.07802440000000001
+
+Classifier: elm-4000_Leaky ReLU_hsv
+
+Accuracy: 0.971551724137931
+Balanced Accuracy: 0.9791404949740283
+F1 Score: [0.99019608 0.94472362 0.97284534 0.95665172 0.99750623]
+MCC: 0.9615733939325852
+
+Training time (s): 4.5018092
+Testing time (s): 0.0680524
+
+Classifier: elm-4000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.9767241379310345
+Balanced Accuracy: 0.9827347019252208
+F1 Score: [0.99019608 0.97409326 0.97532315 0.96119403 1.        ]
+MCC: 0.9684533591926824
+
+Training time (s): 4.6810798
+Testing time (s): 0.08551030000000001
+
+Classifier: elm-4000_Leaky ReLU_cielab
+
+Accuracy: 0.8801724137931034
+Balanced Accuracy: 0.8897376125015173
+F1 Score: [0.88297872 0.81447964 0.86549708 0.85410334 0.98994975]
+MCC: 0.8385096795175823
+
+Training time (s): 4.984558000000001
+Testing time (s): 0.0799957
+
+Classifier: elm-4000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.9637931034482758
+Balanced Accuracy: 0.9725512588486593
+F1 Score: [0.97560976 0.96907216 0.96252927 0.93993994 0.99750623]
+MCC: 0.9509273656160815
+
+Training time (s): 5.6670664
+Testing time (s): 0.079972
+
+Classifier: elm-5000_Leaky ReLU_rgb
+
+Accuracy: 0.7060344827586207
+Balanced Accuracy: 0.6922626803730096
+F1 Score: [0.48529412 0.60992908 0.80301129 0.58181818 0.88205128]
+MCC: 0.6107760006553252
+
+Training time (s): 6.9112087
+Testing time (s): 0.11599910000000001
+
+Classifier: elm-5000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9767241379310345
+Balanced Accuracy: 0.9859386906218323
+F1 Score: [1.         0.98429319 0.96933962 0.9628529  1.        ]
+MCC: 0.9684696426785219
+
+Training time (s): 6.9811223
+Testing time (s): 0.1060026
+
+Classifier: elm-5000_Leaky ReLU_hsv
+
+Accuracy: 0.8181034482758621
+Balanced Accuracy: 0.8321901998121936
+F1 Score: [0.79775281 0.64539007 0.80742459 0.82042834 0.97186701]
+MCC: 0.7617316738008827
+
+Training time (s): 6.9249989
+Testing time (s): 0.08600440000000001
+
+Classifier: elm-5000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.9301724137931034
+Balanced Accuracy: 0.9367086488387513
+F1 Score: [0.91370558 0.93532338 0.93039443 0.89393939 0.995     ]
+MCC: 0.9054006458849313
+
+Training time (s): 6.689211500000001
+Testing time (s): 0.1079968
+
+Classifier: elm-5000_Leaky ReLU_cielab
+
+Accuracy: 0.5413793103448276
+Balanced Accuracy: 0.5580430094062746
+F1 Score: [0.56804734 0.25376344 0.60273973 0.54413893 0.79881657]
+MCC: 0.4426089993232562
+
+Training time (s): 6.8912151
+Testing time (s): 0.0919876
+
+Classifier: elm-5000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.9155172413793103
+Balanced Accuracy: 0.9289582175133427
+F1 Score: [0.93333333 0.88995215 0.90246769 0.88554217 0.99750623]
+MCC: 0.8858901046181205
+
+Training time (s): 7.046253200000001
+Testing time (s): 0.1079964
+
+Classifier: elm-6000_Leaky ReLU_rgb
+
+Accuracy: 0.6724137931034483
+Balanced Accuracy: 0.6505439021927024
+F1 Score: [0.45112782 0.34725275 0.82367758 0.6780303  0.80487805]
+MCC: 0.6074567948142153
+
+Training time (s): 10.844668500000001
+Testing time (s): 0.10398510000000001
+
+Classifier: elm-6000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9706896551724138
+Balanced Accuracy: 0.9790701208493356
+F1 Score: [0.98536585 0.98947368 0.96592244 0.95081967 0.99751861]
+MCC: 0.9602442761405402
+
+Training time (s): 11.2639185
+Testing time (s): 0.13596250000000001
+
+Classifier: elm-6000_Leaky ReLU_hsv
+
+Accuracy: 0.7646551724137931
+Balanced Accuracy: 0.7788623135128019
+F1 Score: [0.74853801 0.51461988 0.79478055 0.75471698 0.94488189]
+MCC: 0.7004516574339009
+
+Training time (s): 9.1128665
+Testing time (s): 0.114387
+
+Classifier: elm-6000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.4224137931034483
+Balanced Accuracy: 0.3385308559690196
+F1 Score: [0.26890756 0.45901639 0.49847406 0.38979118 0.28205128]
+MCC: 0.16573992869804793
+
+Training time (s): 9.8376882
+Testing time (s): 0.13454480000000002
+
+Classifier: elm-6000_Leaky ReLU_cielab
+
+Accuracy: 0.35344827586206895
+Balanced Accuracy: 0.35423977958552777
+F1 Score: [0.26229508 0.20033956 0.44884488 0.32346241 0.45977011]
+MCC: 0.1896130377295324
+
+Training time (s): 9.8327176
+Testing time (s): 0.1060384
+
+Classifier: elm-6000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.6818965517241379
+Balanced Accuracy: 0.7111960758038488
+F1 Score: [0.53543307 0.49673203 0.70385126 0.68018721 0.89617486]
+MCC: 0.594989717697848
+
+Training time (s): 10.2896424
+Testing time (s): 0.12495640000000001
+
+Classifier: elm-7000_Leaky ReLU_rgb
+
+Accuracy: 0.3706896551724138
+Balanced Accuracy: 0.37196983641234627
+F1 Score: [0.11009174 0.22803738 0.38504673 0.44036697 0.50557621]
+MCC: 0.2369641488084081
+
+Training time (s): 12.3710337
+Testing time (s): 0.1310046
+
+Classifier: elm-7000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.853448275862069
+Balanced Accuracy: 0.8570278531916168
+F1 Score: [0.78021978 0.95876289 0.84925201 0.7818448  0.96938776]
+MCC: 0.8001384813663809
+
+Training time (s): 12.472089800000001
+Testing time (s): 0.16064240000000002
+
+Classifier: elm-7000_Leaky ReLU_hsv
+
+Accuracy: 0.8896551724137931
+Balanced Accuracy: 0.8963813704719396
+F1 Score: [0.84375    0.81385281 0.92361927 0.82588598 0.98740554]
+MCC: 0.8522995798308756
+
+Training time (s): 12.3209236
+Testing time (s): 0.12404190000000001
+
+Classifier: elm-7000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.7801724137931034
+Balanced Accuracy: 0.7870628706945195
+F1 Score: [0.83615819 0.68067227 0.84548826 0.6584022  0.91351351]
+MCC: 0.7065008961944149
+
+Training time (s): 12.938986600000002
+Testing time (s): 0.1400351
+
+Classifier: elm-7000_Leaky ReLU_cielab
+
+Accuracy: 0.7387931034482759
+Balanced Accuracy: 0.7643384735068015
+F1 Score: [0.77777778 0.73214286 0.73710074 0.63739377 0.90909091]
+MCC: 0.6489629273365458
+
+Training time (s): 12.5343999
+Testing time (s): 0.12102280000000001
+
+Classifier: elm-7000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.6060344827586207
+Balanced Accuracy: 0.5992127545419687
+F1 Score: [0.59863946 0.56637168 0.62623762 0.51       0.81415929]
+MCC: 0.46717801415795857
+
+Training time (s): 13.456300700000002
+Testing time (s): 0.1439626
+
+Classifier: elm-8000_Leaky ReLU_rgb
+
+Accuracy: 0.803448275862069
+Balanced Accuracy: 0.8001252626224871
+F1 Score: [0.67948718 0.97382199 0.77973568 0.72238806 0.96202532]
+MCC: 0.7307758687075938
+
+Training time (s): 16.911154500000002
+Testing time (s): 0.14201160000000002
+
+Classifier: elm-8000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9767241379310345
+Balanced Accuracy: 0.9842080654230948
+F1 Score: [0.99512195 0.98947368 0.97297297 0.95976155 0.99751861]
+MCC: 0.9684309831839256
+
+Training time (s): 17.8521115
+Testing time (s): 0.1761113
+
+Classifier: elm-8000_Leaky ReLU_hsv
+
+Accuracy: 0.8698275862068966
+Balanced Accuracy: 0.8815535329837656
+F1 Score: [0.88888889 0.70817121 0.92434988 0.78922345 0.97732997]
+MCC: 0.8283133539840929
+
+Training time (s): 18.0263804
+Testing time (s): 0.1367945
+
+Classifier: elm-8000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.9577586206896552
+Balanced Accuracy: 0.9677047653209815
+F1 Score: [0.98522167 0.91707317 0.96244131 0.93494705 0.9924812 ]
+MCC: 0.9430290594624097
+
+Training time (s): 17.873706600000002
+Testing time (s): 0.164002
+
+Classifier: elm-8000_Leaky ReLU_cielab
+
+Accuracy: 0.5206896551724138
+Balanced Accuracy: 0.519099446425843
+F1 Score: [0.42335766 0.39156627 0.57034221 0.43902439 0.75925926]
+MCC: 0.36588243182960006
+
+Training time (s): 16.405101000000002
+Testing time (s): 0.1851477
+
+Classifier: elm-8000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.49310344827586206
+Balanced Accuracy: 0.5055167589509281
+F1 Score: [0.52413793 0.29561201 0.59097978 0.45306633 0.66      ]
+MCC: 0.3693481108989323
+
+Training time (s): 17.3699975
+Testing time (s): 0.1640095
+
+Classifier: elm-9000_Leaky ReLU_rgb
+
+Accuracy: 0.9198275862068965
+Balanced Accuracy: 0.9276389069409327
+F1 Score: [0.92146597 0.94472362 0.91075515 0.87901991 0.99255583]
+MCC: 0.8913544279454964
+
+Training time (s): 20.955308900000002
+Testing time (s): 0.18000080000000002
+
+Classifier: elm-9000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9741379310344828
+Balanced Accuracy: 0.9830601748991338
+F1 Score: [0.99512195 0.94       0.97265161 0.96428571 1.        ]
+MCC: 0.96518798414051
+
+Training time (s): 21.777584100000002
+Testing time (s): 0.1829994
+
+Classifier: elm-9000_Leaky ReLU_hsv
+
+Accuracy: 0.2482758620689655
+Balanced Accuracy: 0.24569773353562335
+F1 Score: [0.03773585 0.15023474 0.25203252 0.37327189 0.13023256]
+MCC: 0.08458496844491435
+
+Training time (s): 23.692184
+Testing time (s): 0.2160044
+
+Classifier: elm-9000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.971551724137931
+Balanced Accuracy: 0.9802158485216536
+F1 Score: [0.99029126 0.94949495 0.97393365 0.95535714 0.995     ]
+MCC: 0.9616039217450407
+
+Training time (s): 21.9941193
+Testing time (s): 0.1919984
+
+Classifier: elm-9000_Leaky ReLU_cielab
+
+Accuracy: 0.7681034482758621
+Balanced Accuracy: 0.7888402630593101
+F1 Score: [0.79532164 0.66165414 0.75348837 0.715625   0.95039164]
+MCC: 0.6905576785166719
+
+Training time (s): 22.7175166
+Testing time (s): 0.16996940000000002
+
+Classifier: elm-9000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.8137931034482758
+Balanced Accuracy: 0.8423134623071535
+F1 Score: [0.85       0.66920152 0.8320802  0.76035503 0.95039164]
+MCC: 0.7555583225057696
+
+Training time (s): 24.4392277
+Testing time (s): 0.1907315
+
+Classifier: elm-10000_Leaky ReLU_rgb
+
+Accuracy: 0.3275862068965517
+Balanced Accuracy: 0.3641654957257337
+F1 Score: [0.20869565 0.20162602 0.46181172 0.32929782 0.35179153]
+MCC: 0.23932749052953306
+
+Training time (s): 29.2537324
+Testing time (s): 0.2320009
+
+Classifier: elm-10000_Leaky ReLU_rgb_lbp
+
+Accuracy: 0.9594827586206897
+Balanced Accuracy: 0.9654856795352946
+F1 Score: [0.94117647 0.99470899 0.95734597 0.9339207  1.        ]
+MCC: 0.945142452901474
+
+Training time (s): 30.0745374
+Testing time (s): 0.24203170000000002
+
+Classifier: elm-10000_Leaky ReLU_hsv
+
+Accuracy: 0.4663793103448276
+Balanced Accuracy: 0.46310611065831475
+F1 Score: [0.390625   0.2474645  0.54666667 0.50492611 0.59930314]
+MCC: 0.35223159945671534
+
+Training time (s): 28.4817985
+Testing time (s): 0.19596170000000002
+
+Classifier: elm-10000_Leaky ReLU_hsv_lbp
+
+Accuracy: 0.7525862068965518
+Balanced Accuracy: 0.7515699684564319
+F1 Score: [0.77380952 0.55290102 0.85899094 0.65753425 0.87078652]
+MCC: 0.6783706859785117
+
+Training time (s): 31.6005436
+Testing time (s): 0.2439985
+
+Classifier: elm-10000_Leaky ReLU_cielab
+
+Accuracy: 0.5508620689655173
+Balanced Accuracy: 0.5443798501025686
+F1 Score: [0.49275362 0.36158192 0.57216495 0.54520548 0.74534161]
+MCC: 0.41258094632905856
+
+Training time (s): 29.6342703
+Testing time (s): 0.2559962
+
+Classifier: elm-10000_Leaky ReLU_cielab_lbp
+
+Accuracy: 0.8689655172413793
+Balanced Accuracy: 0.880539195468047
+F1 Score: [0.8994709  0.63309353 0.90663391 0.84603421 0.97979798]
+MCC: 0.8302469250970115
+
+Training time (s): 30.2493751
+Testing time (s): 0.28404090000000004
+

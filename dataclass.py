@@ -2,6 +2,7 @@ import cv2,os,random
 import numpy as np
 import albumentations as A
 from imblearn.over_sampling import SMOTE,RandomOverSampler
+from imblearn.combine import SMOTEENN
 from imblearn.under_sampling import RandomUnderSampler
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelBinarizer
@@ -73,18 +74,27 @@ class DataClass:
         res2 = res.reshape((img.shape))
         return res2
 
-    def _smote_data(self,X=None,y=None,random_state=None):
-        random_state = np.random.default_rng(random_state)
+    def _smote_data(self,X=None,y=None,random_state=0):
         X_shape = X.shape
         if len(X_shape) > 2:
             X = X.reshape(X.shape[0],-1)#Flatten image matrix before resizing
-        sm = SMOTE(random_state=random_state.integers(2**32-1))
+        sm = SMOTE(random_state=random_state,sampling_strategy='auto',)
         X,y = sm.fit_resample(X,y)
         if len(X_shape) > 2:
             X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
         return X,y
 
-    def _oversample_data(self,X=None,y=None,random_state=None):
+    def _smote_enn_data(self,X=None,y=None,random_state=0):
+        X_shape = X.shape
+        if len(X_shape) > 2:
+            X = X.reshape(X.shape[0],-1)#Flatten image matrix before resizing
+        sm = SMOTEENN(random_state=random_state,sampling_strategy='auto')
+        X,y = sm.fit_resample(X,y)
+        if len(X_shape) > 2:
+            X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
+        return X,y
+
+    def _oversample_data(self,X=None,y=None,random_state=0):
         ros = RandomOverSampler(sampling_strategy="auto",random_state=random_state)
         X_shape = X.shape
         if len(X_shape) > 2:
@@ -94,7 +104,7 @@ class DataClass:
             X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
         return X,y
 
-    def _undersample_data(self,X=None,y=None,random_state=None):
+    def _undersample_data(self,X=None,y=None,random_state=0):
         ros = RandomUnderSampler(sampling_strategy="auto",random_state=random_state)
         X_shape = X.shape
         if len(X_shape) > 2:
@@ -104,18 +114,23 @@ class DataClass:
             X = X.reshape(X.shape[0],X_shape[1],X_shape[2],X_shape[3])#Un-flatten image matrix
         return X,y
     
-    def balance_data(self,X=None,y=None,random_state=None,apply_smote=False,apply_oversampling=False,apply_undersampling=False):
+    def balance_data(self,X=None,y=None,random_state=None,method='oversample'):
         #Use only on training set!
         random_state = random_state if random_state is not None else np.random.default_rng().integers(0,2**32-1)
         print(f"Random state used: {random_state}")
         if X is None or y is None:
             X,y = self.get_dataset()
-        if apply_smote:
-            X,y = self._smote_data(X,y,random_state)
-        if apply_oversampling:
-            X,y = self._oversample_data(X,y,random_state)
-        if apply_undersampling:
-            X,y = self._undersample_data(X,y,random_state)
+        match method:
+            case 'smote':
+                X,y = self._smote_data(X,y,random_state)
+            case 'smote-enn':
+                X,y = self._smote_enn_data(X,y,random_state)
+            case 'oversample':
+                X,y = self._oversample_data(X,y,random_state)
+            case 'undersample':
+                X,y = self._undersample_data(X,y,random_state)
+            case _:
+                pass
         return X,y
 
     def extract_features(self,image,bins=64,colorspace="hsv",use_lbp=True):
@@ -310,10 +325,10 @@ class DataClass:
         for classidx,classname in enumerate(self.classes):
             dir_train_path = os.path.join(out_path, "train", classname)
             dir_test_path = os.path.join(out_path, "test", classname)
-            dir_other_path = os.path.join(out_path, "other", classname)
+            #dir_other_path = os.path.join(out_path, "other", classname)
             os.makedirs(dir_train_path,exist_ok=True)
             os.makedirs(dir_test_path,exist_ok=True)
-            os.makedirs(dir_other_path,exist_ok=True)
+            #os.makedirs(dir_other_path,exist_ok=True)
             imageidxs = sorted([idx for idx in range(len(self.labels)) if self.labels[idx] == classidx])
             for idx in imageidxs:
                 if idx in train_idx:
@@ -321,7 +336,8 @@ class DataClass:
                 elif idx in test_idx:
                     file_path = os.path.join(dir_test_path, self.filenames[idx])
                 else:
-                    file_path = os.path.join(dir_other_path, self.filenames[idx])
+                    pass
+                    #file_path = os.path.join(dir_other_path, self.filenames[idx])
                 ctr += 1
                 #print(f'Writing file {ctr}: {self.filenames[idx]}->{file_path}\r',end='')
                 cv2.imwrite(file_path, self.images[idx])
