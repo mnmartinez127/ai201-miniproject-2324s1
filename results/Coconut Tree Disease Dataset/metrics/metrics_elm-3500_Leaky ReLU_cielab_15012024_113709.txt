@@ -1,0 +1,22 @@
+Classifier: elm-3500_Leaky ReLU_cielab
+              precision    recall  f1-score   support
+
+           0       0.96      0.91      0.94       103
+           1       0.63      0.99      0.77        94
+           2       0.87      0.86      0.86       427
+           3       0.84      0.73      0.78       335
+           4       1.00      1.00      1.00       201
+
+    accuracy                           0.86      1160
+   macro avg       0.86      0.90      0.87      1160
+weighted avg       0.87      0.86      0.86      1160
+
+F1 Score: [0.93532338 0.76859504 0.86454653 0.7827476  0.99502488]
+MCC: 0.8159263153011539
+Classes: ['Bud Root Dropping' 'Bud Rot' 'Gray Leaf Spot' 'Leaf Rot' 'Stem Bleeding']
+Precision: [0.95918367 0.62837838 0.86966825 0.8419244  0.99502488]
+Recall: [0.91262136 0.9893617  0.85948478 0.73134328 0.99502488]
+
+Training time (s): 2.4023596
+Testing time (s): 0.059978100000000006
+

@@ -1,0 +1,22 @@
+Classifier: elm-8500_Leaky ReLU_cielab_lbp
+              precision    recall  f1-score   support
+
+           0       1.00      0.18      0.31       198
+           1       0.94      0.34      0.50       216
+           2       0.30      0.59      0.40       214
+           3       1.00      0.22      0.36       159
+           4       0.24      0.48      0.32       217
+
+    accuracy                           0.37      1004
+   macro avg       0.70      0.36      0.38      1004
+weighted avg       0.67      0.37      0.38      1004
+
+F1 Score: [0.30769231 0.49659864 0.4        0.36082474 0.31950845]
+MCC: 0.22790120068482977
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [1.         0.93589744 0.30166271 1.         0.23963134]
+Recall: [0.18181818 0.33796296 0.59345794 0.22012579 0.47926267]
+
+Training time (s): 15.322814300000001
+Testing time (s): 0.1569366
+

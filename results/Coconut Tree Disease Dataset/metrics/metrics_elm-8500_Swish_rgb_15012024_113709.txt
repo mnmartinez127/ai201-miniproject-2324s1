@@ -1,0 +1,22 @@
+Classifier: elm-8500_Swish_rgb
+              precision    recall  f1-score   support
+
+           0       0.75      0.95      0.84       103
+           1       0.46      0.93      0.61        94
+           2       0.82      0.65      0.73       427
+           3       0.82      0.57      0.67       335
+           4       0.74      0.99      0.84       201
+
+    accuracy                           0.74      1160
+   macro avg       0.72      0.82      0.74      1160
+weighted avg       0.77      0.74      0.73      1160
+
+F1 Score: [0.84120172 0.61267606 0.72845953 0.67372134 0.84255319]
+MCC: 0.6677310979350917
+Classes: ['Bud Root Dropping' 'Bud Rot' 'Gray Leaf Spot' 'Leaf Rot' 'Stem Bleeding']
+Precision: [0.75384615 0.45789474 0.82300885 0.82327586 0.73605948]
+Recall: [0.95145631 0.92553191 0.65339578 0.57014925 0.98507463]
+
+Training time (s): 13.784725300000002
+Testing time (s): 0.33328250000000004
+

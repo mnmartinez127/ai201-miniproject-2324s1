@@ -1,0 +1,22 @@
+Classifier: elm-5500_Logistic_cielab
+              precision    recall  f1-score   support
+
+           0       0.75      0.72      0.74       198
+           1       0.91      0.90      0.90       216
+           2       0.88      0.84      0.86       214
+           3       0.59      0.69      0.64       159
+           4       0.86      0.83      0.85       217
+
+    accuracy                           0.80      1004
+   macro avg       0.80      0.80      0.80      1004
+weighted avg       0.81      0.80      0.81      1004
+
+F1 Score: [0.73521851 0.9044289  0.85645933 0.63768116 0.84777518]
+MCC: 0.7548587407220687
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [0.7486911  0.91079812 0.87745098 0.59139785 0.86190476]
+Recall: [0.72222222 0.89814815 0.8364486  0.6918239  0.83410138]
+
+Training time (s): 6.572153200000001
+Testing time (s): 0.1838189
+

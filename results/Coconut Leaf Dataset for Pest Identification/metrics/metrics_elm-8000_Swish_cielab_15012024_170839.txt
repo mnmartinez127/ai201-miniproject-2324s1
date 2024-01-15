@@ -1,0 +1,22 @@
+Classifier: elm-8000_Swish_cielab
+              precision    recall  f1-score   support
+
+           0       0.99      1.00      0.99       198
+           1       0.97      0.96      0.97       216
+           2       0.99      0.97      0.98       214
+           3       0.99      0.97      0.98       159
+           4       0.94      0.96      0.95       217
+
+    accuracy                           0.97      1004
+   macro avg       0.97      0.97      0.97      1004
+weighted avg       0.97      0.97      0.97      1004
+
+F1 Score: [0.99497487 0.96519722 0.97882353 0.97777778 0.9476082 ]
+MCC: 0.9650568751069903
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [0.99       0.96744186 0.98578199 0.98717949 0.93693694]
+Recall: [1.         0.96296296 0.97196262 0.96855346 0.95852535]
+
+Training time (s): 13.152963100000001
+Testing time (s): 0.2872116
+

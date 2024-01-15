@@ -1,0 +1,22 @@
+Classifier: elm-8500_Logistic_hsv
+              precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00       103
+           1       0.25      0.05      0.09        94
+           2       0.27      0.34      0.30       427
+           3       0.25      0.44      0.32       335
+           4       1.00      0.04      0.09       201
+
+    accuracy                           0.26      1160
+   macro avg       0.35      0.17      0.16      1160
+weighted avg       0.36      0.26      0.22      1160
+
+F1 Score: [0.         0.0877193  0.29782834 0.31818182 0.08571429]
+MCC: -0.09319085601079428
+Classes: ['Bud Root Dropping' 'Bud Rot' 'Gray Leaf Spot' 'Leaf Rot' 'Stem Bleeding']
+Precision: [0.         0.25       0.26666667 0.24957555 1.        ]
+Recall: [0.         0.05319149 0.33723653 0.43880597 0.04477612]
+
+Training time (s): 17.0143001
+Testing time (s): 0.3263074
+

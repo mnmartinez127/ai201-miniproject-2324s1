@@ -1,0 +1,28 @@
+Training Classes:['Bud Root Dropping', 'Bud Rot', 'Gray Leaf Spot', 'Leaf Rot', 'Stem Bleeding']
+Training Samples: 4638=4638
+Bud Root Dropping: 411
+Bud Rot: 376
+Gray Leaf Spot: 1708
+Leaf Rot: 1338
+Stem Bleeding: 805
+
+Testing Samples: 4638=4638
+Bud Root Dropping: 103
+Bud Rot: 94
+Gray Leaf Spot: 427
+Leaf Rot: 335
+Stem Bleeding: 201
+
+Balanced Training Samples: 1880=1880
+Bud Root Dropping: 376
+Bud Rot: 376
+Gray Leaf Spot: 376
+Leaf Rot: 376
+Stem Bleeding: 376
+
+rgb feature size: 192=192
+rgb_lbp feature size: 448=448
+hsv feature size: 192=192
+hsv_lbp feature size: 448=448
+cielab feature size: 192=192
+cielab_lbp feature size: 448=448

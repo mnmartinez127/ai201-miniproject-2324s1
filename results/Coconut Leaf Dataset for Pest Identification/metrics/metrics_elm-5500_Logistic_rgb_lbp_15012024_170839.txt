@@ -1,0 +1,22 @@
+Classifier: elm-5500_Logistic_rgb_lbp
+              precision    recall  f1-score   support
+
+           0       0.62      0.10      0.17       198
+           1       0.44      0.43      0.43       216
+           2       0.35      0.52      0.42       214
+           3       0.23      0.13      0.16       159
+           4       0.32      0.53      0.40       217
+
+    accuracy                           0.36      1004
+   macro avg       0.39      0.34      0.32      1004
+weighted avg       0.40      0.36      0.33      1004
+
+F1 Score: [0.17391304 0.43457944 0.42045455 0.16326531 0.39861352]
+MCC: 0.19538093481784072
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [0.625      0.43867925 0.35350318 0.23255814 0.31944444]
+Recall: [0.1010101  0.43055556 0.51869159 0.12578616 0.52995392]
+
+Training time (s): 9.1708625
+Testing time (s): 0.2599975
+

@@ -1,0 +1,22 @@
+Classifier: elm-1500_Swish_rgb
+              precision    recall  f1-score   support
+
+           0       0.97      0.97      0.97       198
+           1       0.90      0.94      0.92       216
+           2       0.98      0.94      0.96       214
+           3       0.96      0.97      0.97       159
+           4       0.92      0.89      0.90       217
+
+    accuracy                           0.94      1004
+   macro avg       0.94      0.94      0.94      1004
+weighted avg       0.94      0.94      0.94      1004
+
+F1 Score: [0.97229219 0.91609977 0.96190476 0.96573209 0.9044289 ]
+MCC: 0.9276911002007928
+Classes: ['Caterpillars' 'Drying of Leaflets' 'Flaccidity' 'Leaflets' 'Yellowing']
+Precision: [0.96984925 0.89777778 0.98058252 0.95679012 0.91509434]
+Recall: [0.97474747 0.93518519 0.94392523 0.97484277 0.89400922]
+
+Training time (s): 0.7189981000000001
+Testing time (s): 0.0570058
+

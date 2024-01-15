@@ -1,0 +1,22 @@
+Classifier: elm-2000_Swish_hsv_lbp
+              precision    recall  f1-score   support
+
+           0       0.97      0.99      0.98       103
+           1       0.78      1.00      0.87        94
+           2       0.96      0.87      0.91       427
+           3       0.92      0.93      0.92       335
+           4       0.99      1.00      1.00       201
+
+    accuracy                           0.93      1160
+   macro avg       0.92      0.96      0.94      1160
+weighted avg       0.94      0.93      0.93      1160
+
+F1 Score: [0.98076923 0.8744186  0.91176471 0.92466765 0.9950495 ]
+MCC: 0.9107502936231564
+Classes: ['Bud Root Dropping' 'Bud Rot' 'Gray Leaf Spot' 'Leaf Rot' 'Stem Bleeding']
+Precision: [0.97142857 0.7768595  0.9562982  0.91520468 0.99014778]
+Recall: [0.99029126 1.         0.87119438 0.93432836 1.        ]
+
+Training time (s): 0.8719097
+Testing time (s): 0.10404150000000001
+
