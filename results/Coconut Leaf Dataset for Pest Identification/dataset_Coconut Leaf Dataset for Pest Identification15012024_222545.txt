@@ -1,0 +1,28 @@
+Training Classes:['Caterpillars', 'Drying of Leaflets', 'Flaccidity', 'Leaflets', 'Yellowing']
+Training Samples: 4012=4012
+Caterpillars: 792
+Drying of Leaflets: 862
+Flaccidity: 855
+Leaflets: 636
+Yellowing: 867
+
+Testing Samples: 1004=1004
+Caterpillars: 198
+Drying of Leaflets: 216
+Flaccidity: 214
+Leaflets: 159
+Yellowing: 217
+
+Balanced Training Samples: 3180=3180
+Caterpillars: 636
+Drying of Leaflets: 636
+Flaccidity: 636
+Leaflets: 636
+Yellowing: 636
+
+rgb feature size: 192=192
+rgb_lbp feature size: 448=448
+hsv feature size: 192=192
+hsv_lbp feature size: 448=448
+cielab feature size: 192=192
+cielab_lbp feature size: 448=448

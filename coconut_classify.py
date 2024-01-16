@@ -54,6 +54,7 @@ def plot_results(y_predict,y_test,classes,filenames,times=None,savepath='',saven
     print(f"Precision: {precision}")
     print(f"Recall: {recall}")
     print(f"F1 Score: {f1_score}")
+    print(f"Average F1 Score: {np.mean(f1_score)}")
     print(f"MCC: {mcc}")
     print(f"Balanced Accuracy: {bal_accuracy}")
     disp.figure_.suptitle(f"Confusion Matrix for classifier\n{savename}")
@@ -85,7 +86,7 @@ def plot_results(y_predict,y_test,classes,filenames,times=None,savepath='',saven
     classmap = np.vectorize(classes.__getitem__)
     np.savetxt(os.path.join(savepath,"predictions",f"{savename}_{timestamp}.csv"),np.stack((classmap(y_predict),classmap(y_test),filenames),axis=-1),delimiter=',',header="Predicted,Actual,Filename",fmt="%s")
     print("\n\n")
-    return accuracy,bal_accuracy,times[0],times[1]
+    return accuracy,bal_accuracy,np.average(f1_score),times[0],times[1]
 
 def eval_classifier(classifier,X_train,X_test,y_train,y_test,classes,filenames,savepath='',savename='',timestamp='',show_plot=False):
     print(f"Starting classifier {savename} evaluation...")
@@ -121,8 +122,8 @@ if __name__ == "__main__":
         cached_data_path = os.path.join(processed_path,"cached_data/") #path for feature dataset
         os.makedirs(results_path,exist_ok=True)
         #Read and process the dataset
-        #random_state = np.random.randint((2**31)-1)
-        random_state = 317401096
+        random_state = np.random.randint((2**31)-1)
+        random_state = 317401096 #comment this out for random states
 
         use_cache = os.path.exists(cached_data_path)
         for colorspace in ['rgb','hsv','cielab']:
@@ -173,7 +174,7 @@ if __name__ == "__main__":
                     f.write(f"Training Samples: {X_train.shape[0]}={y_train.shape[0]}\n")
                     f.write('\n'.join([f"{classes[train_counts[0][i]]}: {train_counts[1][i]}" for i in range(len(train_counts[0]))]))
                     f.write(f"\n\n")
-                    f.write(f"Testing Samples: {X_train.shape[0]}={y_train.shape[0]}\n")
+                    f.write(f"Testing Samples: {X_test.shape[0]}={y_test.shape[0]}\n")
                     f.write('\n'.join([f"{classes[test_counts[0][i]]}: {test_counts[1][i]}" for i in range(len(test_counts[0]))]))
                     f.write(f"\n\n")
 
@@ -191,7 +192,7 @@ if __name__ == "__main__":
 
                 print("Balanced training set!")
                 os.makedirs(cached_data_path,exist_ok=True)
-                for colorspace in ['rgb','hsv','cielab']:
+                for colorspace in ['rgb','hsv','cielab','None']:
                     for use_lbp in [False,True]:
                         feature_name = f"{colorspace}{'_lbp' if use_lbp else ''}"
                         X_train1,y_train1 = train_data.apply_feature_extraction(X_train,y_train,colorspace=colorspace,use_lbp=use_lbp) #contains features
@@ -212,11 +213,11 @@ if __name__ == "__main__":
         print("Pre-processing stage complete!")
 
         if not os.path.isfile(os.path.join(results_path,"result-accuracy.csv")):
-            perf = {'lbp':[],'activation function':[],'color space':[],'hidden nodes':[],'accuracy':[],'balanced accuracy':[],'training time':[],'testing time':[]}
+            perf = {'lbp':[],'activation function':[],'color space':[],'hidden nodes':[],'accuracy':[],'balanced accuracy':[],'average f1':[],'training time':[],'testing time':[]}
             for func_name,ufunc in activation_functions.items():
                 for num_hidden in range(1000,10001,500):
                     classifier,classifier_name = ELMClassifier(n_neurons=num_hidden,ufunc=ufunc,random_state=random_state),f"elm-{num_hidden}_{func_name}"
-                    for colorspace in ['rgb','hsv','cielab']:
+                    for colorspace in ['rgb','hsv','cielab','None']:
                         for use_lbp in [False,True]:
                             feature_name = f"{colorspace}{'_lbp' if use_lbp else ''}"
                             #Evaluate all classifiers on feature dataset
@@ -225,7 +226,7 @@ if __name__ == "__main__":
                             del loaded_data
                             print(f"Evaluating classifier {classifier_name} on {feature_name}")
                             print(f"{X_train1.shape[1]}={X_test1.shape[1]} features | {X_train1.shape[0]}={y_train1.shape[0]} training points | {X_test1.shape[0]}={y_test1.shape[0]} testing points")
-                            accuracy,bal_accuracy,training_time,testing_time = eval_classifier(classifier,X_train1,X_test1,y_train1,y_test1,classes,filenames,savepath=results_path,savename=f"{classifier_name}_{feature_name}",timestamp=timestamp,show_plot=False)
+                            accuracy,bal_accuracy,f1_ave,training_time,testing_time = eval_classifier(classifier,X_train1,X_test1,y_train1,y_test1,classes,filenames,savepath=results_path,savename=f"{classifier_name}_{feature_name}",timestamp=timestamp,show_plot=False)
 
                             perf['lbp'].append(use_lbp)
                             perf['activation function'].append(func_name)
@@ -233,6 +234,7 @@ if __name__ == "__main__":
                             perf['hidden nodes'].append(num_hidden)
                             perf['accuracy'].append(accuracy)
                             perf['balanced accuracy'].append(bal_accuracy)
+                            perf['average f1'].append(f1_ave)
                             perf['training time'].append(training_time)
                             perf['testing time'].append(testing_time)
             perf = pd.DataFrame(perf)
@@ -246,21 +248,21 @@ if __name__ == "__main__":
         perf = perf[perf["hidden nodes"]%1000 == 0]
         perf.to_csv(os.path.join(results_path,"result-accuracy_1000.csv"))
         act_lines = {False:{"Leaky ReLU":'r',"Logistic":'g',"Swish":'b'},True:{"Leaky ReLU":'c',"Logistic":'y',"Swish":'m'}}
-        color_lines = {"hsv":"-","rgb":":","cielab":"--","gray":"-."}
+        color_lines = {"hsv":"-","rgb":":","cielab":"--","gray":"-.","None":"-."}
 
         fig1,ax1=plt.subplots()
         ax1.set_title(f"Accuracy: Color Histogram Features")
         ax1.set_xlim([0,int(perf["hidden nodes"].max())+1]) #establish range of values
         ax1.set_ylim([0,1])
         ax1.set_xlabel("Number of hidden nodes")
-        ax1.set_ylabel("Accuracy (s)")
+        ax1.set_ylabel("Accuracy")
 
         fig2,ax2=plt.subplots()
         ax2.set_title(f"Accuracy: Color Histogram + LBP Features")
         ax2.set_xlim([0,int(perf["hidden nodes"].max())+1]) #establish range of values
         ax2.set_ylim([0,1])
         ax2.set_xlabel("Number of hidden nodes")
-        ax2.set_ylabel("Accuracy (s)")
+        ax2.set_ylabel("Accuracy")
 
         fig3,ax3=plt.subplots()
         ax3.set_title(f"Accuracy: Best Parameters")
@@ -268,7 +270,7 @@ if __name__ == "__main__":
         #manually set limit conditions
         ax3.set_ylim([min((perf[(perf["activation function"]!="Logistic") & (perf["color space"]!="cielab")]["balanced accuracy"])),1])
         ax3.set_xlabel("Number of hidden nodes")
-        ax3.set_ylabel("Accuracy (s)")
+        ax3.set_ylabel("Accuracy")
 
         fig4,ax4=plt.subplots()
         ax4.set_title(f"Training time: Color Histogram Features")
@@ -285,22 +287,48 @@ if __name__ == "__main__":
         ax5.set_ylabel("Testing time (s)")
 
 
+        fig6,ax6=plt.subplots()
+        ax6.set_title(f"Average F1 Scores: Color Histogram Features")
+        ax6.set_xlim([0,int(perf["hidden nodes"].max())+1]) #establish range of values
+        ax6.set_ylim([0,1])
+        ax6.set_xlabel("Number of hidden nodes")
+        ax6.set_ylabel("Average F1 Score")
+
+        fig7,ax7=plt.subplots()
+        ax7.set_title(f"Average F1 Scores: Color Histogram + LBP Features")
+        ax7.set_xlim([0,int(perf["hidden nodes"].max())+1]) #establish range of values
+        ax7.set_ylim([0,1])
+        ax7.set_xlabel("Number of hidden nodes")
+        ax7.set_ylabel("Average F1 Score")
+
+        fig8,ax8=plt.subplots()
+        ax8.set_title(f"Average F1 Scores: Best Parameters")
+        ax8.set_xlim([0,int(perf["hidden nodes"].max())+1]) #establish range of values
+        #manually set limit conditions
+        ax8.set_ylim([min((perf[(perf["activation function"]!="Logistic") & (perf["color space"]!="cielab")]["balanced accuracy"])),1])
+        ax8.set_xlabel("Number of hidden nodes")
+        ax8.set_ylabel("Average F1 Score")
+
+
         perf_groups = perf.groupby(["activation function","lbp","color space"])
         for name,group in perf_groups:
             print(name)
             print(group)
             if name[1] == False:
                 ax1.plot(group["hidden nodes"],group["balanced accuracy"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}")
+                ax6.plot(group["hidden nodes"],group["average f1"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}")
                 ax4.plot(group["hidden nodes"],group["training time"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}")
                 ax5.plot(group["hidden nodes"],group["testing time"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}")
             else:
                 ax2.plot(group["hidden nodes"],group["balanced accuracy"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}-lbp")
+                ax7.plot(group["hidden nodes"],group["average f1"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}-lbp")
                 ax4.plot(group["hidden nodes"],group["training time"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}-lbp")
                 ax5.plot(group["hidden nodes"],group["testing time"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}-lbp")
 
             #Manually select best parameters based on the previous plots
             if (name[0] in ["Leaky ReLU","Swish"]) and (name[2] in ["hsv","rgb"]):
                 ax3.plot(group["hidden nodes"],group["balanced accuracy"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}{'-lbp' if name[1]==True else ''}")
+                ax8.plot(group["hidden nodes"],group["average f1"],f'{act_lines[name[1]][name[0]]}o{color_lines[name[2]]}',label=f"{name[0]}-{name[2]}{'-lbp' if name[1]==True else ''}")
 
 
         ax1.legend(loc="upper center",bbox_to_anchor=(0.5,-0.2),ncols=3) #legend showing name of each curve
@@ -329,6 +357,23 @@ if __name__ == "__main__":
         ax5.legend(loc="upper center",bbox_to_anchor=(0.5,-0.2),ncols=3) #legend showing name of each curve
         fig5.tight_layout()
         fig5.savefig(os.path.join(results_path,f"Testing_time"),bbox_inches="tight",pad_inches=1.0) #save response curve to file
+
+        ax6.legend(loc="upper center",bbox_to_anchor=(0.5,-0.2),ncols=3) #legend showing name of each curve
+        fig6.tight_layout()
+        fig6.show()
+        fig6.savefig(os.path.join(results_path,f"F1_Score"),bbox_inches="tight",pad_inches=1.0) #save response curve to file
+
+
+        ax7.legend(loc="upper center",bbox_to_anchor=(0.5,-0.2),ncols=3) #legend showing name of each curve
+        fig7.tight_layout()
+        fig7.show()
+        fig7.savefig(os.path.join(results_path,f"F1_Score_lbp"),bbox_inches="tight",pad_inches=1.0) #save response curve to file
+
+
+        ax8.legend(loc="upper center",bbox_to_anchor=(0.5,-0.2),ncols=4) #legend showing name of each curve
+        fig8.tight_layout()
+        fig8.show()
+        fig8.savefig(os.path.join(results_path,f"F1_Score_best"),bbox_inches="tight",pad_inches=1.0) #save response curve to file
 
 
 plt.waitforbuttonpress()
