@@ -20,6 +20,7 @@ Note: This assumes the use of pyenv, but you can use any package manager / pytho
 3. Unzip the compressed folder. Run `unzip -q "datasets/gh56wbsnj5-1.zip" -d "datasets/"` followed by `rm "datasets/gh56wbsnj5-1.zip"` to delete the zip file.
 4. Unzip the dataset once more. Run `unzip -q "datasets/Coconut Tree Disease Dataset/Coconut Tree Disease Dataset.zip" -d "datasets/"` followed by `rm "datasets/Coconut Tree Disease Dataset/Coconut Tree Disease Dataset.zip"` to delete the zip file.
 Alternatively, you can run `bash preprocessing/extract.sh`.
+
 ###Dataset 2: Coconut Diseases and Pest Infestations
 1. Go to https://www.kaggle.com/datasets/samitha96/coconutdiseases
 2. Sign in to a Kaggle account. If you do not have a Kaggle account, sign up for one.
